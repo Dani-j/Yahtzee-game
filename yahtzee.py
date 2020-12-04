@@ -109,10 +109,54 @@ def print_score_card(score_card: dict, player: str):
 
 def write_score(score_card: dict, dice: list) -> dict:
     """
-    Write the score the score into the player's score card.
+    Write the score into the player's score card.
 
     :param score_card:
     :param dice:
     :return:
+    """
+    pass
+    # write the score in the helper function "count_scores()" or in this function????
+
+
+def print_options(score_card: dict) -> dict:
+    """
+    Display the options of way to count the score to the players and return the available options.
+
+    The color of available options are green. (grey if unavailable??? or black?)
+
+    :param score_card:
+    :return: a dictionary, the key of the dictionary is the letter presenting the choice, the key is the score type
+    """
+    pass
+
+
+def choose_count_way(available_options: dict) -> str:
+    """
+    Ask the player the way to count the score and return the chosen way.
+
+    :param available_options:
+    :return:
+    """
+    pass
+
+
+def count_scores(count_way: str, dice: list) -> int:
+    """
+    Calculate the score by the chosen way and return the score.
+
+    :param count_way:
+    :param dice:
+    :return:
+    """
+    pass
+
+
+def add_total_bonus(score_card: dict) -> dict:
+    """
+    Calculate the total score in upper section and lower section and the bonus.
+
+    :param score_card:
+    :return: score_card
     """
     pass
