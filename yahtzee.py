@@ -149,7 +149,9 @@ def move_available_dice(table_dice: list, kept_dice: list, input_dice: list) -> 
 
     :param table_dice: a list of dice on table
     :param kept_dice: a list representing the dice that is(are) kept by the player
-    :param input_dice: return a tuple containing two list of dice, the first one contains the dice on hand,
+    :param input_dice: a list containing the input dice from the player
+    :precondition: all the above parameter conditions must be met
+    :postcondition: return a tuple containing two list of dice, the first one contains the dice on hand,
         the second one contains the dice on the table
     :return: a tuple containing two lists
 
@@ -171,63 +173,137 @@ def print_score_card(score_card: dict, player: str):
     """
     Display the score card to the player.
 
-    :param score_card:
-    :param player:
-    :return:
+    :param score_card: a dictionary
+    :param player: a string representing the player's name
+    :precondition: all the above parameter conditions must be met
+    :postcondition: print a formated score card
+
+    >>> test_score_card = {"UPPER SECTION": {"Ones": "3", "Twos": "", "Threes": "", "Fours": "", "Fives": "10",
+"Sixes": "", "TOTAL": "", "Bonus": "", "TOTAL_": ""}, "LOWER SECTION": {"Three of a kind": "", "Four of a kind": "",
+"Full House": "25", "Small Straight": "", "Large straight": "", "Chance": "", "YAHTZEE": "", "TOTAL": "",
+"GRANT TOTAL": ""}}
+    >>> test_player = "Dani"
+    >>> print_score_card(test_score_card, test_player)
+    Dani's score card:
+    ------------------------------------
+               UPPER SECTION
+    ------------------------------------
+    Ones                 3
+    Twos
+    Threes
+    Fours
+    Fives                10
+    Sixes
+    TOTAL
+    Bonus
+    TOTAL_
+    ------------------------------------
+               LOWER SECTION
+    ------------------------------------
+    Three of a kind
+    Four of a kind
+    Full House           25
+    Small Straight
+    Large straight
+    Chance
+    YAHTZEE
+    TOTAL
+    GRANT TOTAL
     """
+    pass
 
 
-def write_score(score_card: dict, dice: list) -> dict:
+def write_score(score_card: dict, kept_dice: list, table_dice: list) -> dict:
     """
     Write the score into the player's score card.
 
-    :param score_card:
-    :param dice:
-    :return:
+    :param score_card: a dictionary, the key and values are all strings
+    :param kept_dice: a list
+    :param table_dice: a list
+    :precondition: all the above parameter conditions must be met
+    :postcondition: return the updated score card, which is a dictionary
+    :return: a dictionary
     """
     pass
-    # write the score in the helper function "count_scores()" or in this function????
 
 
-# helper functions for write_score() (do you want comments like this to clarify the helper functions?)
-def print_options(score_card: dict) -> dict:
+# ask if I should separate into return and print?
+def print_options(score_card: dict) -> dict:  # should I separate it?? one for find the available ones, one for print??
     """
-    Display the options of way to count the score to the players and return the available options.
+    Display the options of the available row to write the score and return the available rows.
 
-    The color of available options are green. (grey if unavailable??? or black?)
+    The color of available options are green. (grey if unavailable)
+
+    if score_card = {"UPPER SECTION": {"Ones": "3", "Twos": "", "Threes": "", "Fours": "", "Fives": "10", "Sixes":
+    "", "TOTAL": "", "Bonus": "", "TOTAL_": ""}, "LOWER SECTION": {"Three of a kind": "", "Four of a kind": "",
+    "Full House": "25", "Small Straight": "", "Large straight": "", "Chance": "", "YAHTZEE": "", "TOTAL": "",
+    "GRANT TOTAL": ""}}
+
+    the function will print like below:
+
+    ---------------------
+    UPPER SECTION
+    ---------------------
+    (A) - Ones
+    (B) - Twos
+    (C) - Threes
+    (D) - Fours
+    (E) - Fives
+    (F) - Sixes
+    ---------------------
+    LOWER SECTION
+    ---------------------
+    (G) - Three of a kind
+    (H) - Four of a kind
+    (I) - Full House
+    (J) - Small Straight
+    (K) - Large straight
+    (L) - Chance
+    (M) - YAHTZEE
+
+    While "(A) - Ones", "(F) - Sixes", and "(I) - Full House" are in grey color, others are in green color.
 
     :param score_card:
-    :return: a dictionary, the key of the dictionary is the letter presenting the choice, the key is the score type
+    :precondition:
+    :postcondition:
+    :return: a list containing the available options
     """
     pass
 
 
 def choose_score_card_row(available_options: dict) -> str:
     """
-    Ask the player the way to count the score and return the chosen way.
+    Ask the player which row to write the score and return the chosen row.
 
     :param available_options:
+    :precondition:
+    :postcondition:
     :return:
     """
     pass
 
 
-def count_scores(count_way: str, dice: list) -> int:
+def count_scores(score_card: dict, write_row: str, dice: list) -> int:
     """
     Calculate the score by the chosen way and return the score.
 
-    :param count_way:
-    :param dice:
-    :return:
+    :param score_card:
+    :param write_row: a
+    :param dice: a list merged by table_dice and kept_dice
+    :precondition:
+    :postcondition:
+    :return: an str which is the scores in a given row
     """
     pass
 
 
-def add_total_bonus(score_card: dict) -> dict:
+def total_and_bonus(score_card: dict) -> dict:  # JUST RETURN NOT UPDATE??
     """
     Calculate the total score in upper section and lower section and the bonus.
 
     :param score_card:
+    :precondition:
+    :postcondition:
     :return: score_card
     """
     pass
@@ -238,5 +314,16 @@ def winner(two_players: dict):
     Compare the grand total scores between two players and find the winner.
 
     :param two_players:
-    :return:
+    :precondition:
+    :postcondition:
+    :return: a string representing the winner's name
     """
+
+
+def main():
+    doctest.testmod()
+    play_yahtzee()
+
+
+if __name__ == "__main__":
+    main()
