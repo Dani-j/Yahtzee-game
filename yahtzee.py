@@ -42,13 +42,13 @@ def one_round(two_players: dict) -> dict:
     pass
 
 
-def main_menu(dice_time: int, kept_dice: list):
+def main_menu(dice_time: int, kept_dice: list) -> list:
     """
     Print the main menu while checking the available options.
 
     The color of available options are green (grey if unavailable).
     when the dice_time == 1, kept_list == [1, 2, 3, 4], all the functions will print like below in green color:
-    what's your choice?
+    What do you want to do?
     (1) - Keep the dice
     (2) - Move the dice
     (3) - Roll the dice (1/3)
@@ -71,42 +71,55 @@ def ask_menu_choice(player: str, available_options: list) -> str:
     """
     Ask the player's choice with making sure the choice made is available.
 
-    :param player:
-    :param available_options: [2, 4, 5]
-    :return:
-
-
+    :param player: a string representing the player's name.
+    :param available_options: a list containing available choices in the main menu
+    :precondition: all the above parameter conditions must be met
+    :postcondition: return a string representing the player's choice, the string must in the available_options.
+    :return: a string representing the player's choice
     """
-    # can I do this??? if unavailable choice, will ask the player to enter the choice again
-    # until the player enter an available choice??
-    # use while loop (only return when enter an available choice; otherwise, print warning, and ask again)???
     pass
 
 
 def roll_dice(kept_dice: list) -> list:
     """
-    Roll the dice and show them/it to the player.
+    Roll the dice and show them/it to the player, as well as showing the dice on hand.
 
-    :param kept_dice:
-    :return:
+    :param kept_dice: a list representing the dice that is(are) kept by the player
+    :precondition: kept_dice is a list no longer than 5
+    :postcondition: return a list whose length equals to 5 after add the length of kept_dice
+    :return: a list representing the dice that are/is generated randomly
     """
     pass
 
 
-def hold_dice(kept_dice: list, current_dice: list) -> list:
+def print_dice_status(table_dice, kept_dice):
+    """
+    Print the dice on table and the dice on hand.
+
+    The dice on table will be in green color, the dice on hand will be in blue color.
+
+    :param table_dice:
+    :param kept_dice:
+    :return: 
+    """
+
+
+def hold_dice(table_dice: list, kept_dice: list) -> tuple:
     """
     let the player keep the dice.
 
-    when the player does not enter anything, do not keep any more dice
+    When the player does not enter anything, do not keep any new dice.
 
-    :param kept_dice:
-    :param current_dice:
-    :return: a list representing the kept dice
+    :param table_dice: a list of dice on table that can be hold on hand
+    :param kept_dice: a list representing the dice that is(are) kept by the player
+    :precondition: all the above parameter conditions must be met
+    :postcondition: return two list of dice, total length is 5
+    :return: two lists, one contains the dice on table, another one contains the dice on hand
     """
     pass
 
 
-def remove_dice(kept_dice: list, current_dice: list) -> list:
+def remove_dice(kept_dice: list, current_dice: list) -> tuple:
     """
     let the player remove the dice.
 
@@ -117,6 +130,20 @@ def remove_dice(kept_dice: list, current_dice: list) -> list:
     :return: a list representing the kept dice after removing.
     """
     pass
+
+
+def move_available_dice(table_dice, kept_dice, input_dice) -> tuple:
+    """
+    Diagnose the available input dice and move them/it either to table or the player's hand.
+
+    This function will be used in remove_dice and hold_dice function
+    because both of them have steps that move the available dice from one to another.
+
+    :param table_dice:
+    :param kept_dice:
+    :param input_dice:
+    :return:
+    """
 
 
 def print_score_card(score_card: dict, player: str):
