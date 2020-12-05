@@ -96,11 +96,16 @@ def print_dice_status(table_dice, kept_dice):
     """
     Print the dice on table and the dice on hand.
 
-    The dice on table will be in green color, the dice on hand will be in blue color.
+    When table_dice = ['3', '1', '2'], Dice on hand = ['1', '2'], will print:
 
-    :param table_dice:
-    :param kept_dice:
-    :return: 
+    Dice on the table: ['3', '1', '2']
+    Dice on hand: ['1', '2']
+
+    The table_dice list will be in green color, the kept_dice will be in blue color.
+
+    :param table_dice: a list of dice on table
+    :param kept_dice: a list representing the dice that is(are) kept by the player
+    :postcondition: print the dice on table in green color and the dice on hand in blue color.
     """
 
 
@@ -119,31 +124,47 @@ def hold_dice(table_dice: list, kept_dice: list) -> tuple:
     pass
 
 
-def remove_dice(kept_dice: list, current_dice: list) -> tuple:
+def remove_dice(kept_dice: list, table_dice: list) -> tuple:
     """
     let the player remove the dice.
 
     when the player does not enter anything, do not remove any more dice
 
-    :param kept_dice:
-    :param current_dice:
-    :return: a list representing the kept dice after removing.
+    :param kept_dice: a list representing the dice that is(are) kept by the player that could be removed
+    :param table_dice: a list of dice on table
+    :precondition: all the above parameter conditions must be met
+    :postcondition: return a tuple containing two list of dice, total length is 5
+    :return: a tuple containing two lists, one contains the dice on table, another one contains the dice on hand
     """
     pass
 
 
-def move_available_dice(table_dice, kept_dice, input_dice) -> tuple:
+def move_available_dice(table_dice: list, kept_dice: list, input_dice: list) -> tuple:
     """
     Diagnose the available input dice and move them/it either to table or the player's hand.
 
     This function will be used in remove_dice and hold_dice function
     because both of them have steps that move the available dice from one to another.
+    For remove the card, just input table_dice as kept_dice, input kept_dice as table_dice.
 
-    :param table_dice:
-    :param kept_dice:
-    :param input_dice:
-    :return:
+    :param table_dice: a list of dice on table
+    :param kept_dice: a list representing the dice that is(are) kept by the player
+    :param input_dice: return a tuple containing two list of dice, the first one contains the dice on hand,
+        the second one contains the dice on the table
+    :return: a tuple containing two lists
+
+    >>> test_table_dice = ['3', '1', '2']
+    >>> test_kept_dice = ['1', '2']
+    >>> test_input_dice = ["2", "3", "1", "4"]
+    >>> move_available_dice(test_table_dice, test_kept_dice, test_input_dice)
+    (['1', '2', '2', '5', '1'], [])
+    >>> test_table_dice = ['3', '1', '2']
+    >>> test_kept_dice = ['1', '2']
+    >>> test_input_dice = ["2", "3", "1", "4"]
+    >>> move_available_dice(test_kept_dice, test_table_dice, test_input_dice)
+    ([], ['3', '1', '2', '2', '1'])
     """
+    pass
 
 
 def print_score_card(score_card: dict, player: str):
