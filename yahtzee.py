@@ -176,7 +176,7 @@ def remove_dice(kept_dice: list, table_dice: list) -> tuple:
     """
     let the player remove the dice.
 
-    when the player does not enter anything, do not remove any more dice
+    When the player does not enter anything, do not remove any more dice
 
     :param kept_dice: a list representing the dice that is(are) kept by the player that could be removed
     :param table_dice: a list of dice on table
