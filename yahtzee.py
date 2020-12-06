@@ -50,7 +50,7 @@ def one_round(two_players: dict) -> dict:
     pass
 
 
-def main_menu_unavailable_choice(dice_time: int, kept_dice: list) -> tuple:
+def main_menu_unavailable_options(dice_time: int, kept_dice: list) -> tuple:
     """
     Checking the uavailable options and return it.
 
@@ -60,27 +60,27 @@ def main_menu_unavailable_choice(dice_time: int, kept_dice: list) -> tuple:
     :param dice_time: an integer in range [0, 2] representing the time left to dice
     :param kept_dice: a list containing the dice that is hold by the users
     :precondition: all the above parameter conditions must be met
-    :postcondition: return a tuple that the index 0 is a list containing the unavailable choices in the main menu,
-        index 1 is the dice time
-    :return: a tuple containing the unavailable choices in the main menu and the dice time.
+    :postcondition: return a tuple that the index 0 is a list containing the unavailable options in the main menu,
+        index 1 is the left dice time
+    :return: a tuple containing the unavailable options in the main menu and the left dice time.
 
     >>> test_dice_time = 2
     >>> test_kept_dice = []
-    >>> main_menu_unavailable_choice(test_dice_time, test_kept_dice)
+    >>> main_menu_unavailable_options(test_dice_time, test_kept_dice)
     ([],2)
     >>> test_dice_time = 2
     >>> test_kept_dice = [1, 2, 3, 4, 5]
-    >>> main_menu_unavailable_choice(test_dice_time, test_kept_dice)
-    ([3], 2)
+    >>> main_menu_unavailable_options(test_dice_time, test_kept_dice)
+    ([1, 3], 2)
     """
 
 
-def main_menu(unavailable_choice: tuple):
+def main_menu(unavailable_options: tuple):
     """
     Print the main menu formatted by the available_choice
 
     The color of available options are green (grey if unavailable).
-    when the available_choice = [] , all the functions will print like below in green color:
+    when the available_options = [] , all the functions will print like below in green color:
 
     What do you want to do?
     (1) - Keep the dice
@@ -89,25 +89,25 @@ def main_menu(unavailable_choice: tuple):
     (4) - Check score card
     (5) - Write Score
 
-    Option "(1) - Keep the dice" will turn gray if the unavailable_choice is [1, 3] (when the player has 5 dice on hand)
-    Option "(3) - Roll the dice (0/3)" will turn gray if the available_choice is [3] (run out of dice time).
-    Option "(3) - Roll the dice (0/3) !NO DICE" will turn gray if the available_choice is [1, 3] (when the player has
+    Option "(1) - Keep the dice" will turn gray if the unavailable_options [1, 3] (when the player has 5 dice on hand)
+    Option "(3) - Roll the dice (0/3)" will turn gray if the available_options is [3] (run out of left dice time).
+    Option "(3) - Roll the dice (0/3) !NO DICE" will turn gray if the available_options is [1, 3] (when the player has
     5 dice on hand).
 
-    :param unavailable_choice: a tuple of unavailable choices in the main menu and dice time
-    :precondition: unavailable_choice is a tuple that the index 0 is a list containing the unavailable choices
-        in the main menu, index 1 is the dice time
+    :param unavailable_options: a tuple of unavailable options in the main menu and left dice time
+    :precondition: unavailable_options is a tuple that the index 0 is a list containing the unavailable options
+        in the main menu, index 1 is the left dice time
     :postcondition: print the main menu in right color
     """
     pass
 
 
-def ask_menu_choice(player: str, available_options: list) -> str:
+def ask_menu_choice(player: str, unavailable_options: tuple) -> str:
     """
     Ask the player's choice with making sure the choice made is available.
 
     :param player: a string representing the player's name.
-    :param available_options: a list containing available choices in the main menu
+    :param unavailable_options: a tuple containing unavailable choices in the main menu and the left dice time
     :precondition: all the above parameter conditions must be met
     :postcondition: return a string representing the player's choice, the string must in the available_options.
     :return: a string representing the player's choice
@@ -117,11 +117,11 @@ def ask_menu_choice(player: str, available_options: list) -> str:
 
 def roll_dice(kept_dice: list) -> list:
     """
-    Roll the dice and show them/it to the player, as well as showing the dice on hand.
+    Roll the dice and return the result and the kept_dice.
 
     :param kept_dice: a list representing the dice that is(are) kept by the player
-    :precondition: kept_dice is a list no longer than 5
-    :postcondition: return a list whose length equals to 5 after add the length of kept_dice
+    :precondition: kept_dice is a list no longer than 4
+    :postcondition: return list whose length equals to 5 after add the length of kept_dice
     :return: a list representing the dice that are/is generated randomly
     """
     pass
