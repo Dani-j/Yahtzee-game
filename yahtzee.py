@@ -13,6 +13,9 @@ def play_yahtzee():
     Let user to play the yahtzee.
 
     This yahtzee game only allow two users to play.
+    The game ends when both of the two players finish their score card.
+    If one of the player fills out all rows in the score card, then another play can play until fill our all their
+    score card too.
     """
     pass
 
@@ -24,7 +27,7 @@ def set_players(score_card: dict) -> dict:
     :param score_card: a yahtzee game score card template
     :precondition: score_card is a dictionary.
     :postcondition: return a dictionary has the players' names for the keys, and dictionaries for the values
-        which has "score_card" and "dice" as the keys, and the players' score_card and dice list as the values.
+        each dictionary has "score_card" and "dice" as the keys, whose values are the players' score_card and dice.
     :return: a dictionary containing the information of the two players
     """
     pass
@@ -34,6 +37,11 @@ def one_round(two_players: dict) -> dict:
     """
     Let user play one round and update the score card.
 
+    In one round, only when one player write the score of a row, the another player can start playing.
+    In the one round, the player can have 5 options from main_menu.
+    One round ends when both players write the scores.
+
+
     :param two_players: a dictionary containing the information of the two players
     :precondition: two_players is a dictionary containing the information of the two players
     :postcondition: update the score card and return it
@@ -42,12 +50,34 @@ def one_round(two_players: dict) -> dict:
     pass
 
 
-def main_menu(dice_time: int, kept_dice: list) -> list:
+def main_menu_unavailable_choice(dice_time: int, kept_dice: list):
     """
-    Print the main menu while checking the available options.
+    Checking the uavailable options and return it.
+
+    option "(1) - Keep the dice" will turn gray if the length of kept_dice is 5.
+    option "(3) - Roll the dice (0/3)" will turn gray if the dice_time is 0 or the length of kept_dice is 5.
+
+    :param dice_time: an integer in range [0, 2] representing the time left to dice
+    :param kept_dice: a list containing the dice that is hold by the users
+    :precondition: all the above parameter conditions must be met
+    :postcondition: return a list of unavailable choices in the main menu.
+    :return: a list of unavailable choices in the main menu.
+
+    >>> test_dice_time = 2
+    >>> test_kept_dice = []
+    >>> main_menu_unavailable_choice(test_dice_time, test_kept_dice)
+    []
+    >>>
+    """
+
+
+def main_menu(unavailable_choice: list):
+    """
+    Print the main menu formatted by the available_choice
 
     The color of available options are green (grey if unavailable).
-    when the dice_time == 1, kept_list == [1, 2, 3, 4], all the functions will print like below in green color:
+    when the available_choice = [] , all the functions will print like below in green color:
+
     What do you want to do?
     (1) - Keep the dice
     (2) - Move the dice
@@ -55,14 +85,12 @@ def main_menu(dice_time: int, kept_dice: list) -> list:
     (4) - Check score card
     (5) - Write Score
 
-    option "(1) - Keep the dice" will turn gray if the length of kept_dice is 5.
-    option "(3) - Roll the dice (0/3)" will turn gray if the dice_time is 0 or the length of kept_dice is 5.
+    option "(1) - Keep the dice" will turn gray if the unavailable_choice is [1].
+    option "(3) - Roll the dice (0/3)" will turn gray if the available_choice is [3].
 
-    :param dice_time: the time left to dice
-    :param kept_dice: a list containing the dice that is hold by the users
-    :precondition: all the above parameter conditions must be met
-    :postcondition: return a list of available choices in the main menu.
-    :return: a list of available choices in the main menu.
+    :param unavailable_choice: a list of unavailable choices in the main menu
+    :precondition: unavailable_choice is a list either in [[], [1], [2], [1,2]]
+    :postcondition: print the main menu in right color
     """
     pass
 
