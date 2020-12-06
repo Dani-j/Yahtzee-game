@@ -185,7 +185,8 @@ def move_available_dice(table_dice: list, kept_dice: list, input_dice: list) -> 
 
     :param table_dice: a list of dice on table
     :param kept_dice: a list representing the dice that is(are) kept by the player
-    :param input_dice: a list containing the input dice from the player
+    :param input_dice: a list containing dice the player wants to hold/move,
+        the elements in the list are in ['1', '2', '3', '4', '5', '6']
     :precondition: all the above parameter conditions must be met
     :postcondition: return a tuple containing two list of dice, the first one contains the dice on hand,
         the second one contains the dice on the table
@@ -195,7 +196,7 @@ def move_available_dice(table_dice: list, kept_dice: list, input_dice: list) -> 
     >>> test_kept_dice = ['1', '2']
     >>> test_input_dice = ["2", "3", "1", "4"]
     >>> move_available_dice(test_table_dice, test_kept_dice, test_input_dice)
-    (['1', '2', '2', '5', '1'], [])
+    (['1', '2', '2', '3', '1'], [])
     >>> test_table_dice = ['3', '1', '2']
     >>> test_kept_dice = ['1', '2']
     >>> test_input_dice = ["2", "3", "1", "4"]
