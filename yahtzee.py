@@ -169,7 +169,7 @@ def hold_dice(table_dice: list, kept_dice: list) -> tuple:
     :postcondition: return two list of dice, total length is 5
     :return: two lists, one contains the dice on table, another one contains the dice on hand
     """
-    pass
+    pass 
 
 
 def remove_dice(kept_dice: list, table_dice: list) -> tuple:
