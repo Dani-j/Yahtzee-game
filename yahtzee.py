@@ -5,7 +5,7 @@ def SCORE_CARD() -> dict:
     """
     Return the Yahtzee score card as a dictionary.
 
-    :postcondition: return a dictionary uppercase and lowercase for the keys, and dictionaries for the values
+    :postcondition: return a dictionary has uppercase and lowercase for the keys, and dictionaries for the values
         each dictionary has "row" as the keys, and the values are empty strings representing the score
     :return: a dictionary representing the score card
     """
@@ -24,9 +24,11 @@ def play_yahtzee():
     Let user to play the yahtzee.
 
     This yahtzee game only allow two users to play.
+
     The game ends when both of the two players finish their score card.
-    If one of the player fills out all rows in the score card, then another play can play until fill our all their
-    score card too.
+
+    If one of the player fills out all rows in the score card and the last one is not YAHTZEE,
+    then another play can play until fill out all their score card and the last one is not YAHTZEE.
     """
     pass
 
@@ -280,8 +282,7 @@ def write_score(score_card: dict, kept_dice: list, table_dice: list) -> dict:
     pass
 
 
-# ask if I should separate into return and print?
-def print_row_options(score_card: dict) -> dict:  # should I separate it?? one for find the available ones, one for print??
+def print_row_options(score_card: dict) -> list:  # should I separate it?? one for find the available ones, one for print??
     """
     Display the options of the available row to write the score and return the available rows.
 
@@ -316,48 +317,58 @@ def print_row_options(score_card: dict) -> dict:  # should I separate it?? one f
 
     While "(A) - Ones", "(F) - Sixes", and "(I) - Full House" are in grey color, others are in green color.
 
-    :param score_card:
-    :precondition:
-    :postcondition:
-    :return: a list containing the available options
+    :param score_card: a dictionary, the key and values are all strings
+    :precondition: score_card is a dictionary has uppercase and lowercase for the keys, and dictionaries for the values
+        each dictionary has "row" as the keys, and the values are empty strings representing the score
+    :postcondition: return a list of letters representing the available row to add the score
+    :return: a list containing the available row to add the score
     """
     pass
 
 
-def choose_score_card_row(available_options: dict) -> str:
+def choose_score_card_row(available_row_options: list) -> str:
     """
     Ask the player which row to write the score and return the chosen row.
 
-    :param available_options:
-    :precondition:
-    :postcondition:
-    :return:
+    :param available_row_options: a list containing the available row to add the score
+    :precondition:  available_row_options is a list of letters
+    :postcondition: return a string, which is a letter in available_row_options
+    :return: a string representing the row to write
     """
     pass
 
 
-def count_scores(score_card: dict, write_row: str, dice: list) -> int:
+def write_scores_engine(score_card: dict, write_row: str, dice: list) -> dict:
     """
-    Calculate the score by the chosen way and return the score.
+    Write the score into the player's score card.
 
-    :param score_card:
-    :param write_row: a
-    :param dice: a list merged by table_dice and kept_dice
-    :precondition:
-    :postcondition:
-    :return: an str which is the scores in a given row
-    """
-    pass
+    This function write the score into the chosen row write_row first based the dice, then update the total and bonus.
 
+    :param score_card: a dictionary, the key and values are all strings
+    :param write_row: a string representing the row to write
+    :param dice: a list merged by table_dice and kept_dice, the length is 5
+    :precondition: all the above parameter conditions must be met
+    :postcondition: return a dictionary representing the score card that has been updated the scores
+    :return: an dictionary which is the score card
 
-def total_and_bonus(score_card: dict) -> dict:  # JUST RETURN NOT UPDATE??
-    """
-    Calculate the total score in upper section and lower section and the bonus.
-
-    :param score_card:
-    :precondition:
-    :postcondition:
-    :return: score_card
+    >>> test_score_card = {"UPPER SECTION": {"Ones": "", "Twos": "", "TOTAL": "", "Bonus": "", 'TOTAL_': ''},
+"LOWER SECTION": {"Three of a kind": "", "Four of a kind": "", "TOTAL": "", "GRANT_TOTAL": ""}}
+    >>> test_write_row = "A"
+    >>> test_dice = ["1", "2", "3", "4", "5"]
+    {"UPPER SECTION": {"Ones": "1", "Twos": "", "TOTAL": "1", "Bonus": "", 'TOTAL_': '1'},
+    "LOWER SECTION": {"Three of a kind": "", "Four of a kind": "", "TOTAL": "", "GRANT_TOTAL": "1"}}
+    >>> test_score_card = {"UPPER SECTION": {"Ones": "1", "Twos": "", "TOTAL": "1", "Bonus": "", 'TOTAL_': '1'},
+"LOWER SECTION": {"Three of a kind": "", "Four of a kind": "", "TOTAL": "", "GRANT_TOTAL": "1"}}
+    >>> test_write_row = "C"
+    >>> test_dice = ["2", "2", "3", "4", "5"]
+    {"UPPER SECTION": {"Ones": "1", "Twos": "", "TOTAL": "1", "Bonus": "", 'TOTAL_': '1'},
+    "LOWER SECTION": {"Three of a kind": "0", "Four of a kind": "", "TOTAL": "0", "GRANT_TOTAL": "1"}}
+    >>> test_score_card = {"UPPER SECTION": {"Ones": "1", "Twos": "", "TOTAL": "1", "Bonus": "", 'TOTAL_': '1'},
+"LOWER SECTION": {"Three of a kind": "", "Four of a kind": "", "TOTAL": "", "GRANT_TOTAL": "1"}}
+    >>> test_write_row = "B"
+    >>> test_dice = ["2", "2", "2", "2", "5"]
+    {"UPPER SECTION": {"Ones": "1", "Twos": "8", "TOTAL": "1", "Bonus": "0", 'TOTAL_': '9'},
+    "LOWER SECTION": {"Three of a kind": "0", "Four of a kind": "", "TOTAL": "0", "GRANT_TOTAL": "9"}}
     """
     pass
 
@@ -366,10 +377,20 @@ def winner(two_players: dict):
     """
     Compare the grand total scores between two players and find the winner.
 
-    :param two_players:
-    :precondition:
-    :postcondition:
+    :param two_players: a dictionary containing the information of the two players
+    :precondition: two_players is a dictionary has the players' names for the keys, and dictionaries for the values
+        each dictionary has "score_card" and "dice" as the keys, whose values are the players' score_card and dice.
+        All the scores are filled
+    :postcondition: a string which is the the winner's name
     :return: a string representing the winner's name
+
+    >>> test_two_players = {'Dani': {'score_card': {'UPPER SECTION': {'Ones': '1', 'TOTAL': '1'},
+'LOWER SECTION': {'Three of a kind': '14', 'Four of a kind': '16', 'YAHTZEE': '0', 'TOTAL': '30', 'GRANT TOTAL': '31'}},
+'dice': []}, 'Joe': {'score_card': {'UPPER SECTION': {'Ones': '3', 'TOTAL': '3'},
+'LOWER SECTION': {'Three of a kind': '0', 'Four of a kind': '0', 'YAHTZEE': '50', 'TOTAL': '50', 'GRANT TOTAL': '53'}},
+'dice': []}}
+    >>> winner(test_two_players)
+    'Joe'
     """
 
 
