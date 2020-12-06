@@ -89,8 +89,10 @@ def main_menu(unavailable_choice: tuple):
     (4) - Check score card
     (5) - Write Score
 
-    option "(1) - Keep the dice" will turn gray if the unavailable_choice is [1].
-    option "(3) - Roll the dice (0/3)" will turn gray if the available_choice is [3].
+    Option "(1) - Keep the dice" will turn gray if the unavailable_choice is [1, 3] (when the player has 5 dice on hand)
+    Option "(3) - Roll the dice (0/3)" will turn gray if the available_choice is [3] (run out of dice time).
+    Option "(3) - Roll the dice (0/3) !NO DICE" will turn gray if the available_choice is [1, 3] (when the player has
+    5 dice on hand).
 
     :param unavailable_choice: a tuple of unavailable choices in the main menu and dice time
     :precondition: unavailable_choice is a tuple that the index 0 is a list containing the unavailable choices
