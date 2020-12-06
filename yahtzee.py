@@ -50,28 +50,32 @@ def one_round(two_players: dict) -> dict:
     pass
 
 
-def main_menu_unavailable_choice(dice_time: int, kept_dice: list):
+def main_menu_unavailable_choice(dice_time: int, kept_dice: list) -> tuple:
     """
     Checking the uavailable options and return it.
 
-    option "(1) - Keep the dice" will turn gray if the length of kept_dice is 5.
-    option "(3) - Roll the dice (0/3)" will turn gray if the dice_time is 0 or the length of kept_dice is 5.
+    1 representing the option "(1) - Keep the dice"
+    3 representing the option "(3) - Roll the dice"
 
     :param dice_time: an integer in range [0, 2] representing the time left to dice
     :param kept_dice: a list containing the dice that is hold by the users
     :precondition: all the above parameter conditions must be met
-    :postcondition: return a list of unavailable choices in the main menu.
-    :return: a list of unavailable choices in the main menu.
+    :postcondition: return a tuple that the index 0 is a list containing the unavailable choices in the main menu,
+        index 1 is the dice time
+    :return: a tuple containing the unavailable choices in the main menu and the dice time.
 
     >>> test_dice_time = 2
     >>> test_kept_dice = []
     >>> main_menu_unavailable_choice(test_dice_time, test_kept_dice)
-    []
-    >>>
+    ([],2)
+    >>> test_dice_time = 2
+    >>> test_kept_dice = [1, 2, 3, 4, 5]
+    >>> main_menu_unavailable_choice(test_dice_time, test_kept_dice)
+    ([3], 2)
     """
 
 
-def main_menu(unavailable_choice: list):
+def main_menu(unavailable_choice: tuple):
     """
     Print the main menu formatted by the available_choice
 
@@ -88,8 +92,9 @@ def main_menu(unavailable_choice: list):
     option "(1) - Keep the dice" will turn gray if the unavailable_choice is [1].
     option "(3) - Roll the dice (0/3)" will turn gray if the available_choice is [3].
 
-    :param unavailable_choice: a list of unavailable choices in the main menu
-    :precondition: unavailable_choice is a list either in [[], [1], [2], [1,2]]
+    :param unavailable_choice: a tuple of unavailable choices in the main menu and dice time
+    :precondition: unavailable_choice is a tuple that the index 0 is a list containing the unavailable choices
+        in the main menu, index 1 is the dice time
     :postcondition: print the main menu in right color
     """
     pass
