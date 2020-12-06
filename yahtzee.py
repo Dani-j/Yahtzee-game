@@ -373,7 +373,7 @@ def write_scores_engine(score_card: dict, write_row: str, dice: list) -> dict:
     pass
 
 
-def winner(two_players: dict):
+def winner(two_players: dict) -> str:
     """
     Compare the grand total scores between two players and find the winner.
 
@@ -381,8 +381,8 @@ def winner(two_players: dict):
     :precondition: two_players is a dictionary has the players' names for the keys, and dictionaries for the values
         each dictionary has "score_card" and "dice" as the keys, whose values are the players' score_card and dice.
         All the scores are filled
-    :postcondition: a string which is the the winner's name
-    :return: a string representing the winner's name
+    :postcondition: a string which is the the winner's name, or both players' name if there is a draw
+    :return: a string
 
     >>> test_two_players = {'Dani': {'score_card': {'UPPER SECTION': {'Ones': '1', 'TOTAL': '1'},
 'LOWER SECTION': {'Three of a kind': '14', 'Four of a kind': '16', 'YAHTZEE': '0', 'TOTAL': '30', 'GRANT TOTAL': '31'}},
@@ -391,6 +391,12 @@ def winner(two_players: dict):
 'dice': []}}
     >>> winner(test_two_players)
     'Joe'
+    >>> test_two_players = {'Dani': {'score_card': {'UPPER SECTION': {'Ones': '3', 'TOTAL': '3'}, 'LOWER SECTION':
+{'Three of a kind': '14', 'Four of a kind': '16', 'YAHTZEE': '50', 'TOTAL': '80', 'GRANT TOTAL': '83'}}, 'dice': []},
+'Joe': {'score_card': {'UPPER SECTION': {'Ones': '3', 'TOTAL': '3'},'LOWER SECTION': {'Three of a kind': '0',
+'Four of a kind': '30', 'YAHTZEE': '50', 'TOTAL': '80', 'GRANT TOTAL': '83'}}, 'dice': []}}
+    >>> winner(test_two_players)
+    'Dani & Joe'
     """
 
 
