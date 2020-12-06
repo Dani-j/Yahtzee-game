@@ -170,7 +170,7 @@ def remove_dice(kept_dice: list, table_dice: list) -> tuple:
     :param table_dice: a list of dice on table
     :precondition: all the above parameter conditions must be met
     :postcondition: return a tuple containing two list of dice, total length is 5
-    :return: a tuple containing two lists, one contains the dice on table, another one contains the dice on hand
+    :return: a tuple containing two lists, index 0 contains the dice on hand, index 1 contains the dice on table
     """
     pass
 
