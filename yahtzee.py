@@ -127,7 +127,7 @@ def roll_dice(kept_dice: list) -> list:
     pass
 
 
-def print_dice_status(table_dice, kept_dice):
+def print_dice_status(table_dice: list, kept_dice: list):
     """
     Print the dice on table and the dice on hand.
 
@@ -140,6 +140,7 @@ def print_dice_status(table_dice, kept_dice):
 
     :param table_dice: a list of dice on table
     :param kept_dice: a list representing the dice that is(are) kept by the player
+    :precondition: the total length of table_dice and table_dice is 5
     :postcondition: print the dice on table in green color and the dice on hand in blue color.
     """
 
