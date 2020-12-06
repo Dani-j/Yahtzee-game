@@ -4,6 +4,17 @@ import doctest
 def SCORE_CARD() -> dict:
     """
     Return the Yahtzee score card as a dictionary.
+
+    :postcondition: return a dictionary uppercase and lowercase for the keys, and dictionaries for the values
+        each dictionary has "row" as the keys, and the values are empty strings representing the score
+    :return: a dictionary representing the score card
+    """
+    pass
+
+
+def OPTION_UNAVAILABLE():
+    """
+    Print "Oops, Option unavailable."
     """
     pass
 
@@ -257,6 +268,8 @@ def write_score(score_card: dict, kept_dice: list, table_dice: list) -> dict:
     """
     Write the score into the player's score card.
 
+    In this function, score are updated in the helper function for an easier unit testing
+
     :param score_card: a dictionary, the key and values are all strings
     :param kept_dice: a list
     :param table_dice: a list
@@ -268,7 +281,7 @@ def write_score(score_card: dict, kept_dice: list, table_dice: list) -> dict:
 
 
 # ask if I should separate into return and print?
-def print_options(score_card: dict) -> dict:  # should I separate it?? one for find the available ones, one for print??
+def print_row_options(score_card: dict) -> dict:  # should I separate it?? one for find the available ones, one for print??
     """
     Display the options of the available row to write the score and return the available rows.
 
