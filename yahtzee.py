@@ -54,7 +54,6 @@ def one_round(two_players: dict) -> dict:
     In the one round, the player can have 5 options from main_menu.
     One round ends when both players write the scores.
 
-
     :param two_players: a dictionary containing the information of the two players
     :precondition: two_players is a dictionary containing the information of the two players
     :postcondition: update the score card and return it
@@ -93,7 +92,7 @@ def main_menu(unavailable_options: tuple):
     Print the main menu formatted by the available_choice
 
     The color of available options are green (grey if unavailable).
-    when the available_options = [] , all the functions will print like below in green color:
+    When the available_options = [] , all the functions will print like below in green color:
 
     What do you want to do?
     (1) - Keep the dice
