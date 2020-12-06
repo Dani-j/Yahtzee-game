@@ -55,7 +55,7 @@ class Test(TestCase):
         self.assertEqual(expected, mock_stdout.getvalue())
 
     def test_print_score_card_all_score_lower_section(self, mock_stdout):
-        score_card = {"UPPER SECTION": {"Ones": "1", "Twos": ""},
+        score_card = {"UPPER SECTION": {"Ones": "", "Twos": ""},
                       "LOWER SECTION": {"Three of a kind": "14", "Four of a kind": "19"}}
         player = "Dani"
         print_score_card(score_card, player)
