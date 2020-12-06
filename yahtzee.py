@@ -181,27 +181,30 @@ def move_available_dice(table_dice: list, kept_dice: list, input_dice: list) -> 
 
     This function will be used in remove_dice and hold_dice function
     because both of them have steps that move the available dice from one to another.
+
     For remove the card, just input table_dice as kept_dice, input kept_dice as table_dice.
+
+    The dice always move from right to left (i.e. the left list in the tuple can only increase or not change,
+    the right list can only decrease or not change)
 
     :param table_dice: a list of dice on table
     :param kept_dice: a list representing the dice that is(are) kept by the player
-    :param input_dice: a list containing dice the player wants to hold/move,
-        the elements in the list are in ['1', '2', '3', '4', '5', '6']
+    :param input_dice: a list containing dice the player wants to hold/move, the elements in the list are in table_dice
     :precondition: all the above parameter conditions must be met
-    :postcondition: return a tuple containing two list of dice, the first one contains the dice on hand,
-        the second one contains the dice on the table
+    :postcondition: return a tuple containing two list of dice, one contains the dice on hand,
+        another one contains the dice on the table
     :return: a tuple containing two lists
 
     >>> test_table_dice = ['3', '1', '2']
     >>> test_kept_dice = ['1', '2']
-    >>> test_input_dice = ["2", "3", "1", "4"]
+    >>> test_input_dice = ["2", "3", "1"]
     >>> move_available_dice(test_table_dice, test_kept_dice, test_input_dice)
     (['1', '2', '2', '3', '1'], [])
     >>> test_table_dice = ['3', '1', '2']
     >>> test_kept_dice = ['1', '2']
-    >>> test_input_dice = ["2", "3", "1", "4"]
+    >>> test_input_dice = ["1", "2"]
     >>> move_available_dice(test_kept_dice, test_table_dice, test_input_dice)
-    ([], ['3', '1', '2', '2', '1'])
+    (['3', '1', '2', '2', '1'], [])
     """
     pass
 
