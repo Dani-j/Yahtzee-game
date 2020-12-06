@@ -281,7 +281,7 @@ def write_score(score_card: dict, kept_dice: list, table_dice: list) -> dict:
     pass
 
 
-def print_row_options(score_card: dict) -> list:  # should I separate it?? one for find the available ones, one for print??
+def print_row_options(score_card: dict) -> list:
     """
     Display the options of the available row to write the score and return the available rows.
 
