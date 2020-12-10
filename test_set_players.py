@@ -3,7 +3,7 @@ from unittest.mock import patch
 from yahtzee import set_players
 
 
-class Test(TestCase):
+class TestSetPlayers(TestCase):
     """
     Because I plan to use SCORE_CARD() as the score_card in set_players(), all the score_card in the unit test
     are same.

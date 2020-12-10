@@ -2,7 +2,7 @@ from unittest import TestCase
 from yahtzee import winner
 
 
-class Test(TestCase):
+class TestWinner(TestCase):
 
     def test_winner_the_second_player_win(self):
         two_players = {'Dani': {'score_card': {'UPPER SECTION': {'Ones': '1', 'TOTAL': '1'},

@@ -3,7 +3,7 @@ from yahtzee import roll_dice
 from unittest.mock import patch
 
 
-class Test(TestCase):
+class TestRollDice(TestCase):
 
     @patch('random.sample', return_value=["1", "2", "4", "5", "6"])
     def test_roll_dice_kept_dice_length_0(self, mock_output):

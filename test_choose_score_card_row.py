@@ -3,7 +3,7 @@ from yahtzee import choose_score_card_row
 from unittest.mock import patch
 
 
-class Test(TestCase):
+class TestChooseScoreCardRow(TestCase):
     """
     Because it is a while loop, loop until user input valid input, I'm only testing valid input there.
     """

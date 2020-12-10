@@ -2,7 +2,7 @@ from unittest import TestCase
 from yahtzee import main_menu_unavailable_options
 
 
-class Test(TestCase):
+class TestMainMenuUnavailableChoice(TestCase):
     def test_main_menu_unavailable_options_dice_time_2_kept_dice_length_0(self):
         dice_time = 2
         kept_dice = []

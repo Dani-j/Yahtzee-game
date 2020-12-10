@@ -2,7 +2,7 @@ from unittest import TestCase
 from yahtzee import move_available_dice
 
 
-class Test(TestCase):
+class TestMoveAvailableDice(TestCase):
 
     def test_move_available_dice_all_from_table_dice_to_kept_dice(self):
         table_dice = ['3', '1', '2']

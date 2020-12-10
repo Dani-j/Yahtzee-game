@@ -5,7 +5,7 @@ import io
 
 
 @patch('sys.stdout', new_callable=io.StringIO)
-class Test(TestCase):
+class TestPrintScoreCard(TestCase):
     """
     Parameter player is test in the test_set_players, so it is not tested here"
     """

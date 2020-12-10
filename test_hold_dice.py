@@ -3,7 +3,7 @@ from unittest.mock import patch
 from yahtzee import hold_dice
 
 
-class Test(TestCase):
+class TestHoldDice(TestCase):
 
     @patch('builtins.input', side_effect="1")
     def test_hold_dice_hold_part_on_table_no_space(self, mock_input):

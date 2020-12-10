@@ -3,7 +3,7 @@ from unittest.mock import patch
 from yahtzee import remove_dice
 
 
-class Test(TestCase):
+class TestRemoveDice(TestCase):
 
     @patch('builtins.input', side_effect="1")
     def test_remove_dice_remove_part_on_hand_no_space(self, mock_input):

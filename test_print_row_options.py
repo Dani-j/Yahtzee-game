@@ -5,7 +5,7 @@ from yahtzee import print_row_options
 
 
 @patch('sys.stdout', new_callable=io.StringIO)
-class Test(TestCase):
+class TestPrintRowOptions(TestCase):
     
     def test_print_row_options_no_score(self, mock_stdout):
         score_card = {"UPPER SECTION": {"Ones": "", "Twos": "", "TOTAL": ""},

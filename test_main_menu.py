@@ -5,7 +5,7 @@ import io
 
 
 @patch('sys.stdout', new_callable=io.StringIO)
-class Test(TestCase):
+class TestMainMenue(TestCase):
 
     def test_main_menu_unavailable_options_empty_dice_time_1(self, mock_stdout):
         unavailable_options = ([], 1)

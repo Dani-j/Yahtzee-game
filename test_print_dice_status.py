@@ -5,7 +5,7 @@ from yahtzee import print_dice_status
 
 
 @patch('sys.stdout', new_callable=io.StringIO)
-class Test(TestCase):
+class TestPrintDiceStatus(TestCase):
 
     def test_print_dice_status_table_dice_length_0_kept_dice_length_5(self, mock_stdout):
         table_dice = []

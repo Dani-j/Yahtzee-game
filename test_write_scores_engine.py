@@ -2,7 +2,7 @@ from unittest import TestCase
 from yahtzee import write_scores_engine
 
 
-class Test(TestCase):
+class TestWriteScoresEngine(TestCase):
     
     def test_write_scores_engine_write_one_score_upper(self):
         score_card = {"UPPER SECTION": {"Ones": "", "Twos": "", "TOTAL": "", "Bonus": "", 'TOTAL_': ""},

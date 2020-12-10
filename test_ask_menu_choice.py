@@ -3,7 +3,7 @@ from unittest.mock import patch
 from yahtzee import ask_menu_choice
 
 
-class Test(TestCase):
+class TestAskMenuChoice(TestCase):
     """
     The player name (parameter player) is tested in the test_set_players, and the dice_time in the parameter
     unavailable_option is not used in this function, so no test for them in there.
