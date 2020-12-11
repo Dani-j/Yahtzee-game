@@ -254,8 +254,8 @@ def hold_dice(table_dice: list, kept_dice: list) -> tuple:
     :return: a tuple containing two lists
     """
     print_dice_status(table_dice, kept_dice)
-    input_dice = list(input("Please enter the\033[1;34m dice number(s)\033[0m that "
-                            "you want to put back to the table: "))
+    input_dice = list(input("Please enter the\033[1;32m dice number(s)\033[0m that you want to "
+                            "hold from the dice on table: "))
     kept_dice, table_dice = move_available_dice(table_dice, kept_dice, input_dice)
     return kept_dice, table_dice
 
