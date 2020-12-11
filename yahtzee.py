@@ -1,64 +1,49 @@
 import doctest
+import random
+import re
 
-
-def INITIAL_SCORE_CARD() -> dict:
-    """
-    Return the Yahtzee score card as a dictionary.
-
-    -1 means there is no score for that row; the initial score of total, bonus are 0.
-
-    :postcondition: return a dictionary has uppercase and lowercase for the keys, and dictionaries for the values.
-        each dictionary has "row" as the keys, and the values are empty strings representing the score
-    :return: a dictionary representing the score card
-    """
-    pass
+def INITIAL_SCORE_CARD():
+    return {"UPPER SECTION": {"Ones": -1, "Twos": -1, "Threes": -1, "Fours": -1, "Fives": -1, "Sixes": -1,
+                              "TOTAL": 0, "Bonus": 0, "TOTAL_": 0},
+            "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "Full House": -1,
+                              "Small Straight": -1, "Large straight": -1, "Chance": -1, "YAHTZEE": -1,
+                              "TOTAL": 0, "GRANT TOTAL": 0}}
 
 
 def OPTION_UNAVAILABLE():
-    """
-    Print "Oops, option unavailable."
-    """
-    pass
+    print("Oops, option unavailable.")
 
 
 def EMPETY_SCORE():
-    """-1"""
-    pass
+    return -1
 
 
 def FULL_HOUSE_POINTS():
-    """25"""
-    pass
+    return 25
 
 
 def SMALL_STRAIGHT_POINTS():
-    """30"""
-    pass
+    return 30
 
 
 def LARGE_STRAIGHT_POINTS():
-    """40"""
-    pass
+    return 40
 
 
 def YAHTZEE_SCORE_POINTS():
-    """50"""
-    pass
+    return 50
 
 
 def EXTRA_YAHTZEE_SCORE_POINTS():
-    """100"""
-    pass
+    return 100
 
 
 def UPPER_SECTION_BONOUS():
-    """35"""
-    pass
+    return 35
 
 
 def UPPER_SECTION_BONOUS_REQUIRED_POINTS():
-    """63"""
-    pass
+    return 65
 
 
 def play_yahtzee():
@@ -362,6 +347,7 @@ def available_row(score_card: dict, dice: list) -> dict:
     >>> available_row(test_score_card, test_dice)
     {1: "Ones", 2: "Twos", 3: "Three of a kind", 4: "YAHTZEE"}
     """
+    pass
 
 
 def print_row_options(available_options: dict, score_card: dict) -> list:
