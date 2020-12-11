@@ -311,11 +311,11 @@ def remove_dice(table_dice: list, kept_dice: list) -> tuple:
         dice on hand
     :return: a tuple containing two lists
     """
-    # print_dice_status(table_dice, kept_dice)
-    # input_dice = list(input("Please enter the\033[1;34m dice number(s)\033[0m that "
-    #                         "you want to put back to the table: "))
-    # table_dice, kept_dice = move_available_dice(kept_dice, table_dice, input_dice)
-    #
+    print_dice_status(table_dice, kept_dice)
+    input_dice = list(input("Please enter the\033[1;34m dice number(s)\033[0m that "
+                            "you want to put back to the table: "))
+    table_dice, kept_dice = move_available_dice(kept_dice, table_dice, input_dice)
+    return kept_dice, table_dice
 
 
 def print_score_card(player: str, score_card: dict):
