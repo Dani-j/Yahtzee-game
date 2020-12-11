@@ -545,7 +545,22 @@ def count_scores(score_card, write_row: tuple, dice: list) -> tuple:
     >>> count_scores(test_score_card, test_write_row, test_dice)
     (18, "Four of a kind")
     """
-    pass
+    if write_row[0] < 7:
+        return sum([int(a_dice) for a_dice in dice if int(a_dice) == write_row[0]]), write_row[1]
+    if write_row[0] == 7 and dice.count(dice[2]) >= 3 or write_row[0] == 8 and dice.count(dice[2]) >= 4 or \
+            write_row[0] == 12:
+        return sum([int(a_dice) for a_dice in dice]), write_row[1]
+    if write_row[0] == 9 and re.match(r"(.)\1(.)\2{2}|(.)\3{2}(.)\4", "".join(dice)):
+        return FULL_HOUSE_POINTS(), write_row[1]
+    if write_row[0] == 10 and set(dice) in ({"1", "2", "3", "4"}, {"2", "3", "4", "5"}, {"3", "4", "5", "6"}):
+        return SMALL_STRAIGHT_POINTS(), write_row[1]
+    if write_row[0] == 11 and dice in (["1", "2", "3", "4", "5"], ["2", "3", "4", "5", "6"]):
+        return LARGE_STRAIGHT_POINTS(), write_row[1]
+    if write_row[0] == 13 and re.match(r"(.)\1{4}", "".join(dice)):
+        if score_card["LOWER SECTION"]["YAHTZEE"] == EMPETY_SCORE():
+            return YAHTZEE_SCORE_POINTS(), write_row[1]
+        return EXTRA_YAHTZEE_SCORE_POINTS(), write_row[1]
+    return NOT_VALID_ROW_POINTS(), write_row[1]
 
 
 def update_score_card(score_card: dict, write_score_row: tuple) -> dict:
