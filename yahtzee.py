@@ -4,7 +4,7 @@ import re
 
 
 def INITIAL_SCORE_CARD():
-    """The inital """
+    """The initial score card."""
     return {"UPPER SECTION": {"Ones": -1, "Twos": -1, "Threes": -1, "Fours": -1, "Fives": -1, "Sixes": -1,
                               "TOTAL": 0, "Bonus": 0, "TOTAL_": 0},
             "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "Full House": -1,
@@ -13,40 +13,48 @@ def INITIAL_SCORE_CARD():
 
 
 def OPTION_UNAVAILABLE():
-
+    """Print this string when user input an unavailable option"""
     print("Oops, option unavailable.")
 
 
-def EMPETY_SCORE():
+def EMPETY_SCORE() -> int:
+    """-1 means there is no score with the related row"""
     return -1
 
 
-def FULL_HOUSE_POINTS():
+def FULL_HOUSE_POINTS() -> int:
+    """Get 25 points if have valid full house"""
     return 25
 
 
-def SMALL_STRAIGHT_POINTS():
+def SMALL_STRAIGHT_POINTS() -> int:
+    """Get 30 points if have valid small straight"""
     return 30
 
 
-def LARGE_STRAIGHT_POINTS():
+def LARGE_STRAIGHT_POINTS() -> int:
+    """Get 40 points if have valid large straight"""
     return 40
 
 
-def YAHTZEE_SCORE_POINTS():
+def YAHTZEE_SCORE_POINTS() -> int:
+    """Get 50 points if have first valid YAHTZEE"""
     return 50
 
 
-def EXTRA_YAHTZEE_SCORE_POINTS():
+def EXTRA_YAHTZEE_SCORE_POINTS() -> int:
+    """Get 100 points if have valid YAHTZEE after first time"""
     return 100
 
 
-def UPPER_SECTION_BONOUS():
-    return 35
-
-
-def UPPER_SECTION_BONOUS_REQUIRED_POINTS():
+def UPPER_SECTION_BONOUS_REQUIRED_POINTS() -> int:
+    """Must have 65 points in the upper section total to have the bonus points"""
     return 65
+
+
+def UPPER_SECTION_BONOUS() -> int:
+    """Get 35 bonus points"""
+    return 35
 
 
 def play_yahtzee():
@@ -194,7 +202,7 @@ def available_main_options(dice_time: int, kept_dice: list) -> set:
     return available_options
 
 
-def main_menu(available_options: set, dice_time: list, player: str):
+def main_menu(available_options: set, dice_time: list):
     """
     Print the well formatted main menu.
 
@@ -203,7 +211,7 @@ def main_menu(available_options: set, dice_time: list, player: str):
 
     Player One, please chose one of the green color option below
     (1) - Keep the dice
-    (2) - Move the dice
+    (2) - Remove the dice
     (3) - Roll the dice (1/3)
     (4) - Check score card
     (5) - Write Score
@@ -211,14 +219,24 @@ def main_menu(available_options: set, dice_time: list, player: str):
     Options will turn gray if not in the available options.
 
     :param available_options: a set containing the available options in the main menu
-    :param player: a string representing the player's name.
     :param dice_time: an integer representing the number of time(s) the player could roll the dice
     :precondition: all the above parameter conditions must be met
     :postcondition: print the main menu in right color
     """
-    # gray 37m
-    # green 32m
-    pass
+    print(f"Please choose one of the option (in green) below，must write the score before the next player play")
+    if "1" not in available_options:
+        print("\033[1;37m(1) - Keep the dice (NO DICE on table!)\033[0m")
+    else:
+        print("\033[1;32m(1) - Keep the dice\033[0m")
+    if "2" not in available_options:
+        print(f"\033[1;37m(2) - Remove the dice\033[0m")
+    else:
+        print(f"\033[1;32m(2) - Remove the dice\033[0m")
+    if "3" not in available_options:
+        print(f"\033[1;37m(3) - Roll the dice ({dice_time}/3)\033[0m")
+    else:
+        print(f"\033[1;32m(3) - Roll the dice ({dice_time}/3)\033[0m")
+    
 
 
 def hold_dice(table_dice: list, kept_dice: list) -> tuple:
