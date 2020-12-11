@@ -253,7 +253,11 @@ def hold_dice(table_dice: list, kept_dice: list) -> tuple:
         dice in hand
     :return: a tuple containing two lists
     """
-    pass
+    print_dice_status(table_dice, kept_dice)
+    input_dice = list(input("Please enter the\033[1;34m dice number(s)\033[0m that "
+                            "you want to put back to the table: "))
+    kept_dice, table_dice = move_available_dice(table_dice, kept_dice, input_dice)
+    return kept_dice, table_dice
 
 
 def move_available_dice(dice_to_remove: list, dice_to_add: list, input_dice: list) -> tuple:
