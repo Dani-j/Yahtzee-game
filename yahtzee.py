@@ -202,7 +202,7 @@ def available_main_options(dice_time: int, kept_dice: list) -> set:
     return available_options
 
 
-def main_menu(available_options: set, dice_time: list):
+def main_menu(available_options: set, dice_time: int):
     """
     Print the well formatted main menu.
 
@@ -236,7 +236,8 @@ def main_menu(available_options: set, dice_time: list):
         print(f"\033[1;37m(3) - Roll the dice ({dice_time}/3)\033[0m")
     else:
         print(f"\033[1;32m(3) - Roll the dice ({dice_time}/3)\033[0m")
-    
+    print(f"\033[1;32m(4) - Check score card\033[0m")
+    print(f"\033[1;32m(5) - Write score\033[0m")
 
 
 def hold_dice(table_dice: list, kept_dice: list) -> tuple:
