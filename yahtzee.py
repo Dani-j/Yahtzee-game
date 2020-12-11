@@ -103,9 +103,8 @@ def one_turn(player: str, score_card: dict) -> dict:
     :postcondition: update the score card and return it
     :return: a dictionary which is the updated score card
     """
-    kept_dice = []
+    kept_dice, dice_time = [], 2
     table_dice = roll_dice(kept_dice)
-    dice_time = 2
     while True:
         player_choice = ask_menu_choice(player, dice_time, table_dice, kept_dice)
         if player_choice == "1":
@@ -113,11 +112,12 @@ def one_turn(player: str, score_card: dict) -> dict:
         elif player_choice == "2":
             kept_dice, table_dice = remove_dice(table_dice, kept_dice)
         elif player_choice == "3":
-            table_dice, dice_time = roll_dice(kept_dice),  dice_time - 1
+            table_dice, dice_time = roll_dice(kept_dice), dice_time - 1
         elif player_choice == "4":
             print_score_card(player, score_card)
         elif player_choice == "5":
             score_card = write_score(score_card, kept_dice, table_dice)
+            print_score_card(player, score_card)
             return score_card
 
 
@@ -417,9 +417,15 @@ def choose_score_card_row(score_card: dict, dice: list) -> tuple:
     :postcondition: the return tuple containing the row number and the row name
     :return: a tuple consists of a number and a string
     """
-    # available_options = available_row(score_card, dice)
-    # print_options(available_options, score_card)
-    # while True:
+    available_options = available_row(score_card, dice)
+    print_row_options(available_options, score_card)
+    while True:
+        player_choice = input(f"The available options are shown in green, please enter one of the available "
+                              f"options by number: ").strip()
+        if player_choice.isnumeric():
+            if int(player_choice) in available_options:
+                return int(player_choice), available_options[int(player_choice)]
+        OPTION_UNAVAILABLE()
 
 
 def available_row(score_card: dict, dice: list) -> dict:
@@ -588,7 +594,14 @@ def update_score_card(score_card: dict, write_score_row: tuple) -> dict:
     >>> test_score_card = {"UPPER SECTION": {"Ones": "1", "Twos": -1, "TOTAL": "1", "Bonus": 0, 'TOTAL_': 1'},
 "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": 0, "GRANT_TOTAL": "1"}}
     """
-    pass
+    # if write_score_row[1] in ["Ones", "Twos", "Threes", "Fours", "Fives", "Sixes"]:
+    #     score_card["UPPER SECTION"][write_score_row[1]] = write_score_row[0]
+    #     score_card["UPPER SECTION"]["TOTAL"] += write_score_row[0]
+    #     if score_card["UPPER SECTION"]["TOTAL"] >= 63:
+    #         score_card["UPPER SECTION"]["Bonus"] = 35
+    #     score_card["UPPER SECTION"]["TOTAL_"] = score_card["UPPER SECTION"]["TOTAL"] + (
+    #         score_card["UPPER SECTION"]["Bonus"])
+    #
 
 
 def winner(player_1_score_card: dict, player_2_score_card: dict):
