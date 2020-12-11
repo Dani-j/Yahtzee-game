@@ -16,7 +16,7 @@ def INITIAL_SCORE_CARD() -> dict:
 
 def OPTION_UNAVAILABLE():
     """
-    Print "Oops, option unavailable." when
+    Print "Oops, option unavailable."
     """
     pass
 
@@ -61,17 +61,16 @@ def UPPER_SECTION_BONOUS_REQUIRED_POINTS():
     pass
 
 
-
 def play_yahtzee():
     """
-    Let user to play the yahtzee.
+    Let the user play Yahtzee.
 
-    This yahtzee game only allow two users to play.
+    This Yahtzee game only allows two users to play.
 
-    The game ends when both of the two players finish their score card.
+    The game ends when both of the two players complete their score card.
 
-    If only one of the player fills out all rows in the score card,
-    the another play can play until fill out all their score card
+    If only one of the players fills out all the rows in the score card,
+        the other player can play until their score card is completed.
 
     :postcondition: print the result of the Yahtzee game.
     """
@@ -80,14 +79,14 @@ def play_yahtzee():
 
 def one_turn(player: str, score_card: dict) -> dict:
     """
-    Let user play one round and update the score card.
+    Let user play one turn and update the score card.
 
     At the beginning, the system automatically roll the dice for the player.
-    One turn ends when the players write the score.
+    One turn ends when the player writes the score.
 
 
     :param player: a string which is player's name
-    :param score_card: a dictionary representing the yahtzee score card
+    :param score_card: a dictionary representing the Yahtzee score card
     :precondition: all the above parameter conditions must be met
     :postcondition: update the score card and return it
     :return: a dictionary which is the updated score card
@@ -98,15 +97,16 @@ def one_turn(player: str, score_card: dict) -> dict:
 
 def ask_menu_choice(player: str, dice_time: int, table_dice: list, kept_dice: list) -> str:
     """
-    Ask the player's choice with making sure the choice made is available.
+    Return player's choice.
 
     :param player: a string representing the player's name.
-    :param dice_time: an integer in range [0, 2] representing the time left to dice
+    :param dice_time: an integer representing the number of time(s) the player could roll the dice
     :param table_dice: a list of dice on table
-    :param kept_dice: a list containing the dice that is hold by the users
-    :precondition: all the above parameter conditions must be met
-    :postcondition: return a string representing the player's choice, the string must in ["1", "2", "3", "4", "5"]
-    :return:  a string representing the player's choice
+    :param kept_dice: a list of dice held by the user
+    :precondition: player is in ["Player One", "Player Two"],
+        both kept_dice and table_dice are a list of strings or an empty list
+    :postcondition: return a string representing the player's choice, the string must be in ["1", "2", "3", "4", "5"]
+    :return: a string representing the player's choice
     """
     # print the dice status first
     # then find the available dice
@@ -117,7 +117,7 @@ def ask_menu_choice(player: str, dice_time: int, table_dice: list, kept_dice: li
 
 def print_dice_status(table_dice: list, kept_dice: list):
     """
-    Print the dice on table and the dice on hand.
+    Print the dice on table and the dice in hand.
 
     When table_dice = ['3', '1', '2'], dice on hand = ['1', '2'], will print:
 
@@ -127,9 +127,9 @@ def print_dice_status(table_dice: list, kept_dice: list):
     The table_dice list will be in green color, the kept_dice will be in blue color.
 
     :param table_dice: a list of dice on table
-    :param kept_dice: a list representing the dice that is(are) kept by the player
-    :precondition: the total length of table_dice and table_dice is 5
-    :postcondition: print the dice on table in green color and the dice on hand in blue color.
+    :param kept_dice: a list of dice held by the player
+    :precondition: both kept_dice and table_dice are a list of strings or an empty list
+    :postcondition: print the dice on table in green color and the dice in hand in blue color.
     """
     pass
 
@@ -138,13 +138,13 @@ def available_main_options(dice_time: int, kept_dice: list) -> set:
     """
     Checking the available options and return it.
 
-    When there id 0 dice kept by hand, remove the dice from the hand is unavaliable
-    When there are 5 dice kept by hand, keep the dice from the table is unavaliable
-    When the dice_time == 0, roll the dice is unavaliable
+    When there is 0 dice held by the player, cannot remove the dice form the hand
+    When there are 5 dice held by the player, cannot take any dice on table
+    When the dice_time == 0, cannot roll the dice
 
-    :param dice_time: an integer in range [0, 2] representing the time left to dice
-    :param kept_dice: a list containing the dice that is hold by the users
-    :precondition: all the above parameter conditions must be met
+    :param dice_time: an integer representing the number of time(s) the player could roll the dice
+    :param kept_dice: a list of dice held by the player
+    :precondition: dice_time is an integer that is smaller than 3, kept_dice is a list of string(s) or an empty string
     :postcondition: return a set, the element(s) in set are/is in ["1", "2", "3", "4", "5"]
     :return: a set containing the available options in the main menu
 
@@ -167,7 +167,7 @@ def main_menu(available_options: set, dice_time: list, player: str):
     """
     Print the well formatted main menu.
 
-    The color of available options are green (grey if unavailable).
+    The color of the available options are green (grey if unavailable).
     When the available_options = [] , all the functions will print like below in green color:
 
     Player One, please chose one of the green color option below
@@ -181,7 +181,7 @@ def main_menu(available_options: set, dice_time: list, player: str):
 
     :param available_options: a set containing the available options in the main menu
     :param player: a string representing the player's name.
-    :param dice_time: an integer in range [0, 2] representing the time left to dice
+    :param dice_time: an integer representing the number of time(s) the player could roll the dice
     :precondition: all the above parameter conditions must be met
     :postcondition: print the main menu in right color
     """
@@ -190,15 +190,14 @@ def main_menu(available_options: set, dice_time: list, player: str):
     pass
 
 
-def roll_dice(kept_dice: list, dice_time: int) -> tuple:
+def roll_dice(kept_dice: list) -> list:
     """
-    Roll the dice and return the result and the left dice time
+    Roll the dice and return the result.
 
-    :param kept_dice: a list representing the dice that is(are) kept by the player
-    :param dice_time: an integer representing the time left for rolling dice
-    :precondition: list kept_dice is length less than 5, integer dice_time is smaller than 3
-    :postcondition: return tuple consist of a list and a integer
-    :return: a tuple containing the dice on table and the left rolling dice time
+    :param kept_dice: a list of dice held by the player
+    :precondition: kept_dice is a list of string(s) or an empty string, which length is less than 5
+    :postcondition: return a list containing the dice on table
+    :return: a list of strings
     """
     # use random.sample
     pass
@@ -210,11 +209,11 @@ def hold_dice(table_dice: list, kept_dice: list) -> tuple:
 
     When the player does not enter anything, do not keep any new dice.
 
-    :param table_dice: a list of dice on table that can be hold on hand
-    :param kept_dice: a list representing the dice that is(are) kept by the player
-    :precondition: all the above parameter conditions must be met
-    :postcondition: the first list in the tuple containing the the dice on table, another one containing the dice on
-        hand
+    :param table_dice: a list of dice on table that can be held by the user
+    :param kept_dice: a list of dice held by the player
+    :precondition: both kept_dice and table_dice are a list of strings or an empty list
+    :postcondition: the first list in the return tuple containing the the dice on table, the other one containing the
+        dice in hand
     :return: a tuple containing two lists
     """
     pass
@@ -227,10 +226,10 @@ def remove_dice(table_dice: list, kept_dice: list) -> tuple:
     When the player does not enter anything, do not remove any more dice.
 
     :param table_dice: a list of dice on table
-    :param kept_dice: a list of dice on hand
-    :precondition: all the above parameter conditions must be met
-    :postcondition: the first list in the return tuple containing the the dice on table, another one containing the dice on
-        hand
+    :param kept_dice: a list of dice held by the player
+    :precondition: both kept_dice and table_dice are a list of strings or an empty list
+    :postcondition: the first list in the return tuple containing the the dice on table, the other one containing the
+        dice on hand
     :return: a tuple containing two lists
     """
     pass
@@ -276,7 +275,7 @@ def print_score_card(player: str, score_card: dict):
 "Full House": "25", "Small Straight": -1, "Large straight": -1, "Chance": -1, "YAHTZEE": -1, "TOTAL": -1,
 "GRANT TOTAL": ""}}
     >>> test_player = "Dani"
-    >>> print_score_card(test_score_card, test_player)
+    >>> print_score_card(test_player, test_score_card)
     Dani's score card:
     ------------------------------------
                UPPER SECTION
@@ -310,10 +309,11 @@ def write_score(score_card: dict, kept_dice: list, table_dice: list) -> dict:
     """
     Write the score into the player's score card.
 
-    :param score_card: a dictionary representing the Yahtzee score card
-    :param kept_dice: a list of strings
-    :param table_dice: a list of strings
-    :precondition: all the above parameter conditions must be met
+    :param score_card: a nested dictionary representing the Yahtzee score card
+    :param kept_dice: a list of dice held by the player
+    :param table_dice: a list of dice on table
+    :precondition: score_card is a nested dictionary,
+        both kept_dice and table_dice are a list of strings or an empty list
     :postcondition: return the updated score card, which is a dictionary
     :return: a dictionary
     """
@@ -397,7 +397,7 @@ def print_row_options(available_options: dict, score_card: dict) -> list:
 
     While "(A) - Ones", "(F) - Sixes", and "(I) - Full House" are in grey color, others are in green color.
 
-    :param available_options:dictionary containing the option number as the key, row name as the value
+    :param available_options: dictionary containing the option number as the key, row name as the value
     :param score_card: a dictionary representing the yahtzee score card
     :precondition: score_card is a dictionary has uppercase and lowercase for the keys, and dictionaries for the values
         each dictionary has "row" as the keys, and the values are empty strings representing the score
@@ -409,7 +409,7 @@ def print_row_options(available_options: dict, score_card: dict) -> list:
 
 def count_scores(score_card, write_row: tuple, dice: list) -> tuple:
     """
-    Calculate the score the player can get.
+    Calculate the score with the given row and dice.
 
     :param score_card: a dictionary representing the yahtzee score card
     :param write_row: a tuple consists of the row number and the row name
