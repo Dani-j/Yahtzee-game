@@ -5,17 +5,48 @@ def SCORE_CARD() -> dict:
     """
     Return the Yahtzee score card as a dictionary.
 
-    :postcondition: return a dictionary has uppercase and lowercase for the keys, and dictionaries for the values
+    -1 means there is no score for that row; the initial score of total, bonus are 0.
+
+    :postcondition: return a dictionary has uppercase and lowercase for the keys, and dictionaries for the values.
         each dictionary has "row" as the keys, and the values are empty strings representing the score
     :return: a dictionary representing the score card
     """
     pass
 
+def EMPETY_SCORE():
+    """-1"""
+    pass
+
 
 def OPTION_UNAVAILABLE():
     """
-    Print "Oops, Option unavailable."
+    Print "Oops, option unavailable." when
     """
+    pass
+
+
+def FULL_HOUSE_POINTS():
+    """25"""
+    pass
+
+
+def SMALL_STRAIGHT_POINTS():
+    """30"""
+    pass
+
+
+def LARGE_STRAIGHT_POINTS():
+    """40"""
+    pass
+
+
+def YAHTZEE_SCORE_POINTS():
+    """50"""
+    pass
+
+
+def EXTRA_YAHTZEE_SCORE_POINTS():
+    """100"""
     pass
 
 
@@ -27,40 +58,30 @@ def play_yahtzee():
 
     The game ends when both of the two players finish their score card.
 
-    If one of the player fills out all rows in the score card and the last one is not YAHTZEE,
-    then another play can play until fill out all their score card and the last one is not YAHTZEE.
+    If only one of the player fills out all rows in the score card,
+    the another play can play until fill out all their score card
+
+    :postcondition: print the result of the Yahtzee game.
     """
     pass
 
 
-def set_players(score_card: dict) -> dict:
-    """
-    Ask the players name and return a dictionary containing the information of the two players.
-
-    :param score_card: a yahtzee game score card template
-    :precondition: score_card is a dictionary.
-    :postcondition: return a dictionary has the players' names for the keys, and dictionaries for the values
-        each dictionary has "score_card" and "dice" as the keys, whose values are the players' score_card and dice.
-    :return: a dictionary containing the information of the two players
-    """
-    pass
-
-
-def one_round(two_players: dict) -> dict:
+def one_turn(player: str, score_card: dict) -> dict:
     """
     Let user play one round and update the score card.
 
-    In one round, only when one player write the score of a row, the another player can start playing.
-    In the one round, the player can have 5 options from main_menu.
-    One round ends when both players write the scores.
+    At the beginning of the
+    In each turn, the player can have 5 options from main_menu.
+    One turn ends when the players write the score.
 
-    :param two_players: a dictionary containing the information of the two players
-    :precondition: two_players is a dictionary containing the information of the two players
+
+    :param player: a string which is player's name
+    :param score_card: a dictionary representing the yahtzee score card
+    :precondition: all the above parameter conditions must be met
     :postcondition: update the score card and return it
-    :return: a dictionary which is the score card
+    :return: a dictionary which is the updated score card
     """
     pass
-
 
 def main_menu_unavailable_options(dice_time: int, kept_dice: list) -> tuple:
     """
@@ -143,7 +164,7 @@ def print_dice_status(table_dice: list, kept_dice: list):
     """
     Print the dice on table and the dice on hand.
 
-    When table_dice = ['3', '1', '2'], Dice on hand = ['1', '2'], will print:
+    When table_dice = ['3', '1', '2'], dice on hand = ['1', '2'], will print:
 
     Dice on the table: ['3', '1', '2']
     Dice on hand: ['1', '2']
@@ -159,7 +180,7 @@ def print_dice_status(table_dice: list, kept_dice: list):
 
 def hold_dice(table_dice: list, kept_dice: list) -> tuple:
     """
-    let the player keep the dice.
+    Let the player keep the dice.
 
     When the player does not enter anything, do not keep any new dice.
 
@@ -169,12 +190,12 @@ def hold_dice(table_dice: list, kept_dice: list) -> tuple:
     :postcondition: return two list of dice, total length is 5
     :return: two lists, one contains the dice on table, another one contains the dice on hand
     """
-    pass 
+    pass
 
 
 def remove_dice(kept_dice: list, table_dice: list) -> tuple:
     """
-    let the player remove the dice.
+    Let the player remove the dice.
 
     When the player does not enter anything, do not remove any more dice
 
