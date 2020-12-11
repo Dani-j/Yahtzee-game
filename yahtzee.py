@@ -373,7 +373,18 @@ def print_score_card(player: str, score_card: dict):
     TOTAL
     GRANT TOTAL
     """
-    pass
+    print(f"\n{player}'s score card:")
+    for section, rows in score_card.items():
+        header_filled = f'{section:^28s}'
+        markers = "-" * len(header_filled)
+        header = [markers, header_filled, markers]
+        results = []
+        for count, row in enumerate(rows):
+            if rows[row] == -1:
+                results.append(f"{row:<16s}{'':^12s}")
+            else:
+                results.append(f"{row:<16s}{str(rows[row]):^12s}")
+        print("\n".join(header + results))
 
 
 def write_score(score_card: dict, kept_dice: list, table_dice: list) -> dict:
