@@ -451,7 +451,19 @@ def available_row(score_card: dict, dice: list) -> dict:
     >>> available_row(test_score_card, test_dice)
     {1: "Ones", 2: "Twos", 3: "Three of a kind", 4: "YAHTZEE"}
     """
-    pass
+    available_options = {}
+    count = 1
+    for section, rows in score_card.items():
+        for row, score in rows.items():
+            if row == "TOTAL":
+                break
+            if row == "YAHTZEE" and re.match(r"(.)\1{4}", "".join(dice)) and score != 0:
+                available_options[count] = row
+                continue
+            if score == -1:
+                available_options[count] = row
+            count += 1
+    return available_options
 
 
 def print_row_options(available_options: dict, score_card: dict) -> list:
@@ -468,29 +480,28 @@ def print_row_options(available_options: dict, score_card: dict) -> list:
     ---------------------
     UPPER SECTION
     ---------------------
-    (A) - Ones
-    (B) - Twos
-    (C) - Threes
-    (D) - Fours
-    (E) - Fives
-    (F) - Sixes
+    (1) - Ones
+    (2) - Twos
+    (3) - Threes
+    (4) - Fours
+    (5) - Fives
+    (6) - Sixes
     ---------------------
     LOWER SECTION
     ---------------------
-    (G) - Three of a kind
-    (H) - Four of a kind
-    (I) - Full House
-    (J) - Small Straight
-    (K) - Large straight
-    (L) - Chance
-    (M) - YAHTZEE
+    (7) - Three of a kind
+    (8) - Four of a kind
+    (9) - Full House
+    (10) - Small Straight
+    (11) - Large straight
+    (12) - Chance
+    (13) - YAHTZEE
 
     While "(A) - Ones", "(F) - Sixes", and "(I) - Full House" are in grey color, others are in green color.
 
     :param available_options: dictionary containing the option number as the key, row name as the value
     :param score_card: a dictionary representing the yahtzee score card
-    :precondition: score_card is a dictionary has uppercase and lowercase for the keys, and dictionaries for the values
-        each dictionary has "row" as the keys, and the values are empty strings representing the score
+    :precondition: available_options must not empty
     :postcondition: return a list of letters representing the available row to add the score
     :return: a list containing the available row to add the score
     """
