@@ -59,7 +59,7 @@ def play_yahtzee():
 
     :postcondition: print the result of the Yahtzee game.
     """
-    pass
+    player_1_score_card, player_2_score_card = INITIAL_SCORE_CARD(), INITIAL_SCORE_CARD()
 
 
 def one_turn(player: str, score_card: dict) -> dict:
@@ -98,6 +98,20 @@ def ask_menu_choice(player: str, dice_time: int, table_dice: list, kept_dice: li
     # print the menu based on the available dice
     # ask user's choice based on the information provided
     pass
+
+
+def roll_dice(kept_dice: list) -> list:
+    """
+    Roll the dice and return the result.
+
+    :param kept_dice: a list of dice held by the player
+    :precondition: kept_dice is a list of string(s) or an empty string, which length is less than 5
+    :postcondition: return a list containing the dice on table
+    :return: a list of strings
+    """
+    table_dice = random.sample(range(1, 6), 5 - len(kept_dice))
+    table_dice = [str(a_dice) for a_dice in table_dice]
+    return table_dice
 
 
 def print_dice_status(table_dice: list, kept_dice: list):
@@ -172,19 +186,6 @@ def main_menu(available_options: set, dice_time: list, player: str):
     """
     # gray 37m
     # green 32m
-    pass
-
-
-def roll_dice(kept_dice: list) -> list:
-    """
-    Roll the dice and return the result.
-
-    :param kept_dice: a list of dice held by the player
-    :precondition: kept_dice is a list of string(s) or an empty string, which length is less than 5
-    :postcondition: return a list containing the dice on table
-    :return: a list of strings
-    """
-    # use random.sample
     pass
 
 
