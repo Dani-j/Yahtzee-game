@@ -4,6 +4,7 @@ import re
 
 
 def INITIAL_SCORE_CARD():
+    """The inital """
     return {"UPPER SECTION": {"Ones": -1, "Twos": -1, "Threes": -1, "Fours": -1, "Fives": -1, "Sixes": -1,
                               "TOTAL": 0, "Bonus": 0, "TOTAL_": 0},
             "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "Full House": -1,
@@ -12,6 +13,7 @@ def INITIAL_SCORE_CARD():
 
 
 def OPTION_UNAVAILABLE():
+
     print("Oops, option unavailable.")
 
 
@@ -182,6 +184,14 @@ def available_main_options(dice_time: int, kept_dice: list) -> set:
     >>> available_main_options(test_dice_time, test_kept_dice)
     {"1", "2", "4", "5"}
     """
+    available_options = {"1", "2", "3", "4", "5"}
+    if dice_time == 0 and len(kept_dice) != 5:
+        available_options.difference_update({"3"})
+    if len(kept_dice) == 5:
+        available_options.difference_update({"1", "3"})
+    if len(kept_dice) == 0:
+        available_options.difference_update({"2"})
+    return available_options
 
 
 def main_menu(available_options: set, dice_time: list, player: str):
