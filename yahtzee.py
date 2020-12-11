@@ -399,7 +399,12 @@ def write_score(score_card: dict, kept_dice: list, table_dice: list) -> dict:
     :postcondition: return the updated score card, which is a dictionary
     :return: a dictionary
     """
-    pass
+    dice = sorted(kept_dice + table_dice)
+    print_dice_status(table_dice, kept_dice)
+    write_row = choose_score_card_row(score_card, dice)
+    write_score_row = count_scores(score_card, write_row, dice)
+    score_card = update_score_card(score_card, write_score_row)
+    return score_card
 
 
 def choose_score_card_row(score_card: dict, dice: list) -> tuple:
@@ -412,7 +417,9 @@ def choose_score_card_row(score_card: dict, dice: list) -> tuple:
     :postcondition: the return tuple containing the row number and the row name
     :return: a tuple consists of a number and a string
     """
-    pass
+    # available_options = available_row(score_card, dice)
+    # print_options(available_options, score_card)
+    # while True:
 
 
 def available_row(score_card: dict, dice: list) -> dict:
