@@ -136,9 +136,10 @@ def ask_menu_choice(player: str, dice_time: int, table_dice: list, kept_dice: li
     """
     # print_dice_status(table_dice, kept_dice, player)
     # available_options = available_main_options(dice_time, kept_dice)
+    # main_menu(available_options, dice_time)
     # while True:
-    #     player_choice = input(
-    #         f"{player}, please enter your choice by provided option number (in green), then press enter:").strip()
+    #     player_choice = input("Please enter your choice by the provided \033[1;32m"
+    #                           "option number (in green)\033[0m, then press enter:").strip()
     #     if player_choice in available_options:
     #         return player_choice
     #     OPTION_UNAVAILABLE()
@@ -310,7 +311,11 @@ def remove_dice(table_dice: list, kept_dice: list) -> tuple:
         dice on hand
     :return: a tuple containing two lists
     """
-    pass
+    # print_dice_status(table_dice, kept_dice)
+    # input_dice = list(input("Please enter the\033[1;34m dice number(s)\033[0m that "
+    #                         "you want to put back to the table: "))
+    # table_dice, kept_dice = move_available_dice(kept_dice, table_dice, input_dice)
+    #
 
 
 def print_score_card(player: str, score_card: dict):
