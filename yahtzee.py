@@ -57,7 +57,7 @@ def UPPER_SECTION_BONOUS() -> int:
     return 35
 
 
-def not_valid_row_points():
+def NOT_VALID_ROW_POINTS():
     """Get 0 point when the dice is not match with the row requirement."""
     return 0
 
@@ -505,7 +505,20 @@ def print_row_options(available_options: dict, score_card: dict) -> list:
     :postcondition: return a list of letters representing the available row to add the score
     :return: a list containing the available row to add the score
     """
-    pass
+    options_prints = []
+    markers = "-" * 21
+    count = 0
+    for section, rows in score_card.items():
+        options_prints += [markers, section, markers]
+        for row in rows:
+            if row == "TOTAL":
+                break
+            count += 1
+            if count in available_options:
+                options_prints.append(f"\033[1;32m({count}) - {row}\033[0m")  # {chr(ord('@')+count)}
+            else:
+                options_prints.append(f"\033[1;37m({count}) - {row}\033[0m")  # {chr(ord('@')+count)}
+    print("\n".join(options_prints) + "\n")
 
 
 def count_scores(score_card, write_row: tuple, dice: list) -> tuple:
@@ -572,18 +585,18 @@ def winner(player_1_score_card: dict, player_2_score_card: dict):
     :precondition: all the above parameter conditions must be met
     :postcondition: print the correct result
 
-    >>> test_player_1_score_card = {'UPPER SECTION': {'Ones': '1', 'TOTAL': '1'}, 'LOWER SECTION':
-    {'Three of a kind': '14', 'Four of a kind': '16', 'YAHTZEE': '0', 'TOTAL': '30', 'GRANT TOTAL': '31'}}
+    >>> test_player_1_score_card = {'UPPER SECTION': {'Ones': 1, 'TOTAL': 1}, 'LOWER SECTION':
+    {'Three of a kind': 14, 'Four of a kind': 16, 'YAHTZEE': 0, 'TOTAL': 30, 'GRANT TOTAL': 31}}
     >>> test_player_2_score_card = {'UPPER SECTION': {'Ones': '3', 'TOTAL': '3'}, 'LOWER SECTION':
-    {'Three of a kind': '0', 'Four of a kind': '0', 'YAHTZEE': '50', 'TOTAL': '50', 'GRANT TOTAL': '53'}}
+    {'Three of a kind': 0, 'Four of a kind': 0, 'YAHTZEE': 50, 'TOTAL': 50, 'GRANT TOTAL': 53}}
     >>> winner(test_player_1_score_card, test_player_2_score_card)
-    'Congrats, player two, you win!'
-    >>> test_player_1_score_card = {'UPPER SECTION': {'Ones': '3', 'TOTAL': '3'}, 'LOWER SECTION':
-{'Three of a kind': '14', 'Four of a kind': '16', 'YAHTZEE': '50', 'TOTAL': '80', 'GRANT TOTAL': '83'}}
-    >>> test_player_2_score_card = {'UPPER SECTION': {'Ones': '3', 'TOTAL': '3'},'LOWER SECTION':
-    {'Three of a kind': '0', 'Four of a kind': '30', 'YAHTZEE': '50', 'TOTAL': '80', 'GRANT TOTAL': '83'}}
+    'Congrats, player two, You win!'
+    >>> test_player_1_score_card = {'UPPER SECTION': {'Ones': 3, 'TOTAL': 3}, 'LOWER SECTION':
+{'Three of a kind': 14, 'Four of a kind': 16, 'YAHTZEE': 50, 'TOTAL': 80, 'GRANT TOTAL': 83}}
+    >>> test_player_2_score_card = {'UPPER SECTION': {'Ones': 3, 'TOTAL': 3},'LOWER SECTION':
+    {'Three of a kind': 0, 'Four of a kind': 30, 'YAHTZEE': 50, 'TOTAL': 80, 'GRANT TOTAL': 83}}
     >>> winner(test_player_1_score_card, test_player_2_score_card)
-    'Congrats, You both win!'
+    'Congrats. You both win!'
     """
     pass
 
