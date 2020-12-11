@@ -82,35 +82,19 @@ def one_turn(player: str, score_card: dict) -> dict:
     At the beginning, the system automatically roll the dice for the player.
     One turn ends when the player writes the score.
 
-
     :param player: a string which is player's name
     :param score_card: a dictionary representing the Yahtzee score card
     :precondition: all the above parameter conditions must be met
     :postcondition: update the score card and return it
     :return: a dictionary which is the updated score card
     """
-    # use while loop, return after write the score.
-    pass
-
-
-def ask_menu_choice(player: str, dice_time: int, table_dice: list, kept_dice: list) -> str:
-    """
-    Return player's choice.
-
-    :param player: a string representing the player's name.
-    :param dice_time: an integer representing the number of time(s) the player could roll the dice
-    :param table_dice: a list of dice on table
-    :param kept_dice: a list of dice held by the user
-    :precondition: player is in ["Player One", "Player Two"],
-        both kept_dice and table_dice are a list of strings or an empty list
-    :postcondition: return a string representing the player's choice, the string must be in ["1", "2", "3", "4", "5"]
-    :return: a string representing the player's choice
-    """
-    # print the dice status first
-    # then find the available dice
-    # print the menu based on the available dice
-    # ask user's choice based on the information provided
-    pass
+    # kept_dice = []
+    # table_dice = roll_dice(kept_dice)
+    # dice_time = 2
+    # while True:
+    #     player_choice = ask_menu_choice(player, dice_time, table_dice, kept_dice)
+    #     if player_choice == "1":
+    #         kept_dice, table_dice = hold_dice(table_dice, kept_dice)
 
 
 def roll_dice(kept_dice: list) -> list:
@@ -127,12 +111,36 @@ def roll_dice(kept_dice: list) -> list:
     return table_dice
 
 
+def ask_menu_choice(player: str, dice_time: int, table_dice: list, kept_dice: list) -> str:
+    """
+    Return player's choice.
+
+    :param player: a string representing the player's name.
+    :param dice_time: an integer representing the number of time(s) the player could roll the dice
+    :param table_dice: a list of dice on table
+    :param kept_dice: a list of dice held by the user
+    :precondition: player is in ["Player One", "Player Two"],
+        both kept_dice and table_dice are a list of strings or an empty list
+    :postcondition: return a string representing the player's choice, the string must be in ["1", "2", "3", "4", "5"]
+    :return: a string representing the player's choice
+    """
+    # print_dice_status(table_dice, kept_dice, player)
+    # available_options = available_main_options(dice_time, kept_dice)
+    # while True:
+    #     player_choice = input(
+    #         f"{player}, please enter your choice by provided option number (in green), then press enter:").strip()
+    #     if player_choice in available_options:
+    #         return player_choice
+    #     OPTION_UNAVAILABLE()
+
+
 def print_dice_status(table_dice: list, kept_dice: list, player="You have"):
     """
     Print the dice on table and the dice in hand.
 
     When table_dice = ['3', '1', '2'], dice on hand = ['1', '2'], will print:
 
+    You have:
     Dice on the table: ['3', '1', '2']
     Dice on hand: ['1', '2']
 
@@ -144,7 +152,7 @@ def print_dice_status(table_dice: list, kept_dice: list, player="You have"):
     :precondition: both kept_dice and table_dice are a list of strings or an empty list, player is a string
     :postcondition: print the dice on table in green color and the dice in hand in blue color.
     """
-    pass
+    print(f"\n{player}:\nDice on the table: \033[1;32m{table_dice}\033[0m\nDice on hold: \033[1;34m{kept_dice}\033[0m")
 
 
 def available_main_options(dice_time: int, kept_dice: list) -> set:
