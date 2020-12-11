@@ -13,48 +13,53 @@ def INITIAL_SCORE_CARD():
 
 
 def OPTION_UNAVAILABLE():
-    """Print this string when user input an unavailable option"""
+    """Print this string when user input an unavailable option."""
     print("Oops, option unavailable.")
 
 
 def EMPETY_SCORE() -> int:
-    """-1 means there is no score with the related row"""
+    """-1 means there is no score with the related row."""
     return -1
 
 
 def FULL_HOUSE_POINTS() -> int:
-    """Get 25 points if have valid full house"""
+    """Get 25 points if have valid full house."""
     return 25
 
 
 def SMALL_STRAIGHT_POINTS() -> int:
-    """Get 30 points if have valid small straight"""
+    """Get 30 points if have valid small straight."""
     return 30
 
 
 def LARGE_STRAIGHT_POINTS() -> int:
-    """Get 40 points if have valid large straight"""
+    """Get 40 points if have valid large straight."""
     return 40
 
 
 def YAHTZEE_SCORE_POINTS() -> int:
-    """Get 50 points if have first valid YAHTZEE"""
+    """Get 50 points if have first valid YAHTZEE."""
     return 50
 
 
 def EXTRA_YAHTZEE_SCORE_POINTS() -> int:
-    """Get 100 points if have valid YAHTZEE after first time"""
+    """Get 100 points if have valid YAHTZEE after first time."""
     return 100
 
 
 def UPPER_SECTION_BONOUS_REQUIRED_POINTS() -> int:
-    """Must have 65 points in the upper section total to have the bonus points"""
+    """Must have 65 points in the upper section total to have the bonus points."""
     return 65
 
 
 def UPPER_SECTION_BONOUS() -> int:
-    """Get 35 bonus points"""
+    """Get 35 bonus points."""
     return 35
+
+
+def not_valid_row_points():
+    """Get 0 point when the dice is not match with the row requirement."""
+    return 0
 
 
 def play_yahtzee():
@@ -98,13 +103,22 @@ def one_turn(player: str, score_card: dict) -> dict:
     :postcondition: update the score card and return it
     :return: a dictionary which is the updated score card
     """
-    # kept_dice = []
-    # table_dice = roll_dice(kept_dice)
-    # dice_time = 2
-    # while True:
-    #     player_choice = ask_menu_choice(player, dice_time, table_dice, kept_dice)
-    #     if player_choice == "1":
-    #         kept_dice, table_dice = hold_dice(table_dice, kept_dice)
+    kept_dice = []
+    table_dice = roll_dice(kept_dice)
+    dice_time = 2
+    while True:
+        player_choice = ask_menu_choice(player, dice_time, table_dice, kept_dice)
+        if player_choice == "1":
+            kept_dice, table_dice = hold_dice(table_dice, kept_dice)
+        elif player_choice == "2":
+            kept_dice, table_dice = remove_dice(table_dice, kept_dice)
+        elif player_choice == "3":
+            table_dice, dice_time = roll_dice(kept_dice),  dice_time - 1
+        elif player_choice == "4":
+            print_score_card(player, score_card)
+        elif player_choice == "5":
+            score_card = write_score(score_card, kept_dice, table_dice)
+            return score_card
 
 
 def roll_dice(kept_dice: list) -> list:
@@ -134,15 +148,15 @@ def ask_menu_choice(player: str, dice_time: int, table_dice: list, kept_dice: li
     :postcondition: return a string representing the player's choice, the string must be in ["1", "2", "3", "4", "5"]
     :return: a string representing the player's choice
     """
-    # print_dice_status(table_dice, kept_dice, player)
-    # available_options = available_main_options(dice_time, kept_dice)
-    # main_menu(available_options, dice_time)
-    # while True:
-    #     player_choice = input("Please enter your choice by the provided \033[1;32m"
-    #                           "option number (in green)\033[0m, then press enter:").strip()
-    #     if player_choice in available_options:
-    #         return player_choice
-    #     OPTION_UNAVAILABLE()
+    print_dice_status(table_dice, kept_dice, player)
+    available_options = available_main_options(dice_time, kept_dice)
+    main_menu(available_options, dice_time)
+    while True:
+        player_choice = input("Please enter your choice by the provided \033[1;32m"
+                              "option number (in green)\033[0m, then press enter:").strip()
+        if player_choice in available_options:
+            return player_choice
+        OPTION_UNAVAILABLE()
 
 
 def print_dice_status(table_dice: list, kept_dice: list, player="You have"):
