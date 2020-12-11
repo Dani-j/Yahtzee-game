@@ -256,22 +256,6 @@ def hold_dice(table_dice: list, kept_dice: list) -> tuple:
     pass
 
 
-def remove_dice(table_dice: list, kept_dice: list) -> tuple:
-    """
-    Let the player remove the dice from the table.
-
-    When the player does not enter anything, do not remove any more dice.
-
-    :param table_dice: a list of dice on table
-    :param kept_dice: a list of dice held by the player
-    :precondition: both kept_dice and table_dice are a list of strings or an empty list
-    :postcondition: the first list in the return tuple containing the the dice on table, the other one containing the
-        dice on hand
-    :return: a tuple containing two lists
-    """
-    pass
-
-
 def move_available_dice(dice_to_remove: list, dice_to_add: list, input_dice: list) -> tuple:
     """
     Diagnose the available input dice and move them/it either to table or the player's hand.
@@ -294,6 +278,33 @@ def move_available_dice(dice_to_remove: list, dice_to_add: list, input_dice: lis
     >>> test_input_dice = ["1", "2"]
     >>> move_available_dice(test_dice_to_remove, test_dice_to_add, test_input_dice)
     (['3', '1', '2', '2', '1'], [])
+    """
+    dice_unavailable = []
+    for dice in input_dice:
+        if dice not in dice_to_remove and dice != " ":
+            dice_unavailable.append(dice)
+        elif dice in dice_to_remove:
+            dice_to_add.append(dice)
+            dice_to_remove.remove(dice)
+
+    if len(dice_unavailable) != 0:
+        print(f"{dice_unavailable} are/is not available.")
+
+    return dice_to_add, dice_to_remove
+
+
+def remove_dice(table_dice: list, kept_dice: list) -> tuple:
+    """
+    Let the player remove the dice from the table.
+
+    When the player does not enter anything, do not remove any more dice.
+
+    :param table_dice: a list of dice on table
+    :param kept_dice: a list of dice held by the player
+    :precondition: both kept_dice and table_dice are a list of strings or an empty list
+    :postcondition: the first list in the return tuple containing the the dice on table, the other one containing the
+        dice on hand
+    :return: a tuple containing two lists
     """
     pass
 
