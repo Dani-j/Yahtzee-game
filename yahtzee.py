@@ -2,6 +2,7 @@ import doctest
 import random
 import re
 
+
 def INITIAL_SCORE_CARD():
     return {"UPPER SECTION": {"Ones": -1, "Twos": -1, "Threes": -1, "Fours": -1, "Fives": -1, "Sixes": -1,
                               "TOTAL": 0, "Bonus": 0, "TOTAL_": 0},
@@ -60,6 +61,18 @@ def play_yahtzee():
     :postcondition: print the result of the Yahtzee game.
     """
     player_1_score_card, player_2_score_card = INITIAL_SCORE_CARD(), INITIAL_SCORE_CARD()
+    while True:
+        player_1_scores = set(player_1_score_card["UPPER SECTION"].values()) | \
+                          set(player_1_score_card["LOWER SECTION"].values())
+        player_2_scores = set(player_2_score_card["UPPER SECTION"].values()) | \
+                          set(player_2_score_card["LOWER SECTION"].values())
+        if EMPETY_SCORE() in player_1_scores:
+            player_1_score_card = one_turn("Player One", player_1_score_card)
+        if EMPETY_SCORE() in player_2_scores:
+            player_2_score_card = one_turn("Player Two", player_2_score_card)
+        else:
+            break
+    winner(player_1_score_card, player_2_score_card)
 
 
 def one_turn(player: str, score_card: dict) -> dict:
@@ -114,7 +127,7 @@ def roll_dice(kept_dice: list) -> list:
     return table_dice
 
 
-def print_dice_status(table_dice: list, kept_dice: list):
+def print_dice_status(table_dice: list, kept_dice: list, player="You have"):
     """
     Print the dice on table and the dice in hand.
 
@@ -127,7 +140,8 @@ def print_dice_status(table_dice: list, kept_dice: list):
 
     :param table_dice: a list of dice on table
     :param kept_dice: a list of dice held by the player
-    :precondition: both kept_dice and table_dice are a list of strings or an empty list
+    :param player: print the player's name or "You have" for the first sentence????
+    :precondition: both kept_dice and table_dice are a list of strings or an empty list, player is a string
     :postcondition: print the dice on table in green color and the dice in hand in blue color.
     """
     pass
