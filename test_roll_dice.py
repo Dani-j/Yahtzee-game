@@ -12,11 +12,11 @@ class TestRollDice(TestCase):
         expected = ["1", "2", "4", "5", "6"]
         self.assertEqual(result, expected)
 
-    @patch('random.sample', return_value=["2", "4", "5", "6"])
+    @patch('random.sample', return_value=["2", "2", "5", "6"])
     def test_roll_dice_kept_dice_length_1(self, mock_output):
         kept_dice = ["1"]
         result = roll_dice(kept_dice)
-        expected = ["2", "4", "5", "6"]
+        expected = ["2", "2", "5", "6"]
         self.assertEqual(result, expected)
 
     @patch('random.sample', return_value=["1", "2", "4"])
