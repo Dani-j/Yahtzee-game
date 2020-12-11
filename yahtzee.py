@@ -598,7 +598,14 @@ def winner(player_1_score_card: dict, player_2_score_card: dict):
     >>> winner(test_player_1_score_card, test_player_2_score_card)
     'Congrats. You both win!'
     """
-    pass
+    player_1_score = player_1_score_card["LOWER SECTION"]["GRANT TOTAL"]
+    player_2_score = player_2_score_card["LOWER SECTION"]["GRANT TOTAL"]
+    if player_1_score == player_2_score:
+        print("Congrats. You both win!")
+    elif player_1_score > player_2_score:
+        print("Congrats, player one. You win!")
+    else:
+        print("Congrats, player two. You win!")
 
 
 def main():
