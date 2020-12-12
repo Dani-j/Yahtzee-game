@@ -433,6 +433,7 @@ def available_row(score_card: dict, dice: list) -> dict:
     :precondition: all the above parameter conditions must be met
     :postcondition: the return dictionary containing the option number as the key, row name as the value
     :return: a dictionary
+
     >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0}, \
 "LOWER SECTION": {"Three of a kind": -1, "YAHTZEE": -1, "TOTAL": 0, "GRANT_TOTAL": 0}}
     >>> test_dice = ["1", "2", "3", "4", "5"]
@@ -529,6 +530,7 @@ def count_scores(score_card, write_row: tuple, dice: list) -> tuple:
     :precondition: all the above parameter conditions must be met
     :postcondition: return the score and the row name
     :return: a tuple
+
     >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0}, \
 "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": 0, "GRANT_TOTAL": 0}}
     >>> test_write_row = (1, "Ones")
