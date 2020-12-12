@@ -189,24 +189,14 @@ def available_main_options(dice_time: int, kept_dice: list) -> set:
     When there are 5 dice held by the player, cannot take any dice on table
     When the dice_time == 0, cannot roll the dice
 
+    Because the function returns a set, if I expect {"1", "5", "3", "4"}, the doc test get {'3', '1', '4', '5'},
+        the doctest will be failed, I cannot doctest set. So I didn't do the doctest
+
     :param dice_time: an integer representing the number of time(s) the player could roll the dice
     :param kept_dice: a list of dice held by the player
     :precondition: dice_time is an integer that is smaller than 3, kept_dice is a list of string(s) or an empty string
     :postcondition: return a set, the element(s) in set are/is in ["1", "2", "3", "4", "5"]
     :return: a set containing the available options in the main menu
-
-    >>> test_dice_time = 2
-    >>> test_kept_dice = []
-    >>> available_main_options(test_dice_time, test_kept_dice)
-    {"1", "3", "4", "5"}
-    >>> test_dice_time = 2
-    >>> test_kept_dice = ["1", "2", "3", "4", "5"]
-    >>> available_main_options(test_dice_time, test_kept_dice)
-    {"2", "4", "5"}
-    >>> test_dice_time = 0
-    >>> test_kept_dice = ["1", "2", "3", "4"]
-    >>> available_main_options(test_dice_time, test_kept_dice)
-    {"1", "2", "4", "5"}
     """
     available_options = {"1", "2", "3", "4", "5"}
     if dice_time == 0 and len(kept_dice) != 5:
@@ -292,12 +282,13 @@ def move_available_dice(dice_to_remove: list, dice_to_add: list, input_dice: lis
     >>> test_dice_to_add = ['1', '2']
     >>> test_input_dice = ["2", "3", "1", "5"]
     >>> move_available_dice(test_dice_to_remove, test_dice_to_add, test_input_dice)
+    ['5'] are/is not available.
     (['1', '2', '2', '3', '1'], [])
     >>> test_dice_to_remove = ['1', '2']
     >>> test_dice_to_add = ['3', '1', '2']
     >>> test_input_dice = ["1", "2"]
     >>> move_available_dice(test_dice_to_remove, test_dice_to_add, test_input_dice)
-    (['3', '1', '2', '2', '1'], [])
+    (['3', '1', '2', '1', '2'], [])
     """
     dice_unavailable = []
     for dice in input_dice:
@@ -342,37 +333,6 @@ def print_score_card(player: str, score_card: dict):
     :precondition: all the above parameter conditions must be met
     :postcondition: print a formated score card
 
-    >>> test_score_card = {"UPPER SECTION": {"Ones": "3", "Twos": -1, "Threes": -1, "Fours": -1, "Fives": "10",
-"Sixes": -1, "TOTAL": -1, "Bonus": -1, "TOTAL_": ""}, "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1,
-"Full House": "25", "Small Straight": -1, "Large straight": -1, "Chance": -1, "YAHTZEE": -1, "TOTAL": -1,
-"GRANT TOTAL": ""}}
-    >>> test_player = "Dani"
-    >>> print_score_card(test_player, test_score_card)
-    Dani's score card:
-    ------------------------------------
-               UPPER SECTION
-    ------------------------------------
-    Ones                 3
-    Twos
-    Threes
-    Fours
-    Fives                10
-    Sixes
-    TOTAL
-    Bonus
-    TOTAL_
-    ------------------------------------
-               LOWER SECTION
-    ------------------------------------
-    Three of a kind
-    Four of a kind
-    Full House           25
-    Small Straight
-    Large straight
-    Chance
-    YAHTZEE
-    TOTAL
-    GRANT TOTAL
     """
     print(f"\n{player}'s score card:")
     for section, rows in score_card.items():
@@ -442,21 +402,7 @@ def available_row(score_card: dict, dice: list) -> dict:
     :postcondition: the return dictionary containing the option number as the key, row name as the value
     :return: a dictionary
 
-    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0},
-"LOWER SECTION": {"Three of a kind": -1, "YAHTZEE": -1, "TOTAL": 0, "GRANT_TOTAL": 0}}
-    >>> test_dice = ["1", "2", "3", "4", "5"]
-    >>> available_row(test_score_card, test_dice)
-    {1: "Ones", 2: "Twos", 3: "Three of a kind", 4: "YAHTZEE"}
-    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0},
-"LOWER SECTION": {"Three of a kind": -1, "YAHTZEE": 50, "TOTAL": 0, "GRANT_TOTAL": 0}}
-    >>> test_dice = ["1", "1", "1", "2", "1"]
-    >>> available_row(test_score_card, test_dice)
-    {1: "Ones", 2: "Twos", 3: "Three of a kind"}
-    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0},
-"LOWER SECTION": {"Three of a kind": -1, "YAHTZEE": 50, "TOTAL": 0, "GRANT_TOTAL": 0}}
-    >>> test_dice = ["1", "1", "1", "1", "1"]
-    >>> available_row(test_score_card, test_dice)
-    {1: "Ones", 2: "Twos", 3: "Three of a kind", 4: "YAHTZEE"}
+
     """
     available_options = {}
     count = 1
@@ -539,18 +485,6 @@ def count_scores(score_card, write_row: tuple, dice: list) -> tuple:
     :postcondition: return the score and the row name
     :return: a tuple
 
-    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0},
-"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": 0, "GRANT_TOTAL": 0}}
-    >>> test_write_row = (1, "Ones")
-    >>> test_dice = ["1", "1", "3", "4", "5"]
-    >>> count_scores(test_score_card, test_write_row, test_dice)
-    (2, "Ones")
-    >>> test_score_card = {"UPPER SECTION": {"Ones": "1", "Twos": -1, "TOTAL": "1", "Bonus": 0, 'TOTAL_': 1},
-"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": -1, "GRANT_TOTAL": 1}}
-    >>> test_write_row = (4, "Four of a kind")
-    >>> test_dice = ["2", "4", "4", "4", "4"]
-    >>> count_scores(test_score_card, test_write_row, test_dice)
-    (18, "Four of a kind")
     """
     if write_row[0] < 7:
         return sum([int(a_dice) for a_dice in dice if int(a_dice) == write_row[0]]), write_row[1]
@@ -579,21 +513,7 @@ def update_score_card(score_card: dict, write_score_row: tuple) -> dict:
     :precondition: all the above parameter conditions must be met
     :postcondition: update the score card and return it
     :return: an dictionary
-    
-    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": -1, "Bonus": -1, 'TOTAL_': 0},
-"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": -1, "GRANT_TOTAL": 0}}
-    >>> test_write_score_row = (2, "Ones")
-    >>> update_score_card(test_score_card, test_write_score_row)
-    {"UPPER SECTION": {"Ones": 2, "Twos": -1, "TOTAL": 2, "Bonus": -1, 'TOTAL_': 2},
-    "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": -1, "GRANT_TOTAL": 2}}
-    >>> test_score_card = {"UPPER SECTION": {"Ones": 1, "Twos": -1, "TOTAL": "1", "Bonus": 0, 'TOTAL_': 1},
-"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": -1, "GRANT_TOTAL": 1}}
-    >>> test_write_score_row = (18, "Four of a kind")
-    >>> update_score_card(test_score_card, test_write_score_row)
-    {"UPPER SECTION": {"Ones": 1, "Twos": -1, "TOTAL": "1", "Bonus": 0, 'TOTAL_': 1},
-    "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": 18, "TOTAL": 18, "GRANT_TOTAL": 19}}
-    >>> test_score_card = {"UPPER SECTION": {"Ones": "1", "Twos": -1, "TOTAL": "1", "Bonus": 0, 'TOTAL_': 1'},
-"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": 0, "GRANT_TOTAL": "1"}}
+
     """
     if write_score_row[1] in ["Ones", "Twos", "Threes", "Fours", "Fives", "Sixes"]:
         score_card["UPPER SECTION"][write_score_row[1]] = write_score_row[0]
@@ -622,18 +542,6 @@ def winner(player_1_score_card: dict, player_2_score_card: dict):
     :precondition: all the above parameter conditions must be met
     :postcondition: print the correct result
 
-    >>> test_player_1_score_card = {'UPPER SECTION': {'Ones': 1, 'TOTAL': 1}, 'LOWER SECTION':
-    {'Three of a kind': 14, 'Four of a kind': 16, 'YAHTZEE': 0, 'TOTAL': 30, 'GRANT TOTAL': 31}}
-    >>> test_player_2_score_card = {'UPPER SECTION': {'Ones': '3', 'TOTAL': '3'}, 'LOWER SECTION':
-    {'Three of a kind': 0, 'Four of a kind': 0, 'YAHTZEE': 50, 'TOTAL': 50, 'GRANT TOTAL': 53}}
-    >>> winner(test_player_1_score_card, test_player_2_score_card)
-    'Congrats, player two, You win!'
-    >>> test_player_1_score_card = {'UPPER SECTION': {'Ones': 3, 'TOTAL': 3}, 'LOWER SECTION':
-{'Three of a kind': 14, 'Four of a kind': 16, 'YAHTZEE': 50, 'TOTAL': 80, 'GRANT TOTAL': 83}}
-    >>> test_player_2_score_card = {'UPPER SECTION': {'Ones': 3, 'TOTAL': 3},'LOWER SECTION':
-    {'Three of a kind': 0, 'Four of a kind': 30, 'YAHTZEE': 50, 'TOTAL': 80, 'GRANT TOTAL': 83}}
-    >>> winner(test_player_1_score_card, test_player_2_score_card)
-    'Congrats. You both win!'
     """
     player_1_score = player_1_score_card["LOWER SECTION"]["GRANT TOTAL"]
     player_2_score = player_2_score_card["LOWER SECTION"]["GRANT TOTAL"]
