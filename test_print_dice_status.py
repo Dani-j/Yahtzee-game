@@ -25,7 +25,7 @@ class TestPrintDiceStatus(TestCase):
 
     def test_print_dice_status_table_dice_length_2_kept_dice_length_3(self, mock_stdout):
         table_dice = ["2", "6"]
-        kept_dice = ["1", "2", "6"] 
+        kept_dice = ["1", "2", "6"]
         print_dice_status(table_dice, kept_dice)
         expected = "\nYou have:\nDice on the table: \033[1;32m['2', '6']\033[0m\nDice on " \
                    "hold: \033[1;34m['1', '2', '6']\033[0m\n"
