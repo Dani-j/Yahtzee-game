@@ -117,6 +117,7 @@ def one_turn(player: str, score_card: dict) -> dict:
             print_score_card(player, score_card)
         elif player_choice == "5":
             score_card = write_score(score_card, kept_dice, table_dice)
+            print("Score updated! Below is your updated score card")
             print_score_card(player, score_card)
             return score_card
 
@@ -594,14 +595,22 @@ def update_score_card(score_card: dict, write_score_row: tuple) -> dict:
     >>> test_score_card = {"UPPER SECTION": {"Ones": "1", "Twos": -1, "TOTAL": "1", "Bonus": 0, 'TOTAL_': 1'},
 "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": 0, "GRANT_TOTAL": "1"}}
     """
-    # if write_score_row[1] in ["Ones", "Twos", "Threes", "Fours", "Fives", "Sixes"]:
-    #     score_card["UPPER SECTION"][write_score_row[1]] = write_score_row[0]
-    #     score_card["UPPER SECTION"]["TOTAL"] += write_score_row[0]
-    #     if score_card["UPPER SECTION"]["TOTAL"] >= 63:
-    #         score_card["UPPER SECTION"]["Bonus"] = 35
-    #     score_card["UPPER SECTION"]["TOTAL_"] = score_card["UPPER SECTION"]["TOTAL"] + (
-    #         score_card["UPPER SECTION"]["Bonus"])
-    #
+    if write_score_row[1] in ["Ones", "Twos", "Threes", "Fours", "Fives", "Sixes"]:
+        score_card["UPPER SECTION"][write_score_row[1]] = write_score_row[0]
+        score_card["UPPER SECTION"]["TOTAL"] += write_score_row[0]
+        if score_card["UPPER SECTION"]["TOTAL"] >= 63:
+            score_card["UPPER SECTION"]["Bonus"] = 35
+        score_card["UPPER SECTION"]["TOTAL_"] = score_card["UPPER SECTION"]["TOTAL"] + (
+            score_card["UPPER SECTION"]["Bonus"])
+    else:
+        if write_score_row[1] == "YAHTZEE" and write_score_row[0] > 0:
+            score_card["LOWER SECTION"]["YAHTZEE"] += write_score_row[0]
+        else:
+            score_card["LOWER SECTION"][write_score_row[1]] = write_score_row[0]
+        score_card["LOWER SECTION"]["TOTAL"] += write_score_row[0]
+    score_card["LOWER SECTION"]["GRANT_TOTAL"] = score_card["UPPER SECTION"]["TOTAL_"] + score_card["LOWER SECTION"][
+        "TOTAL"]
+    return score_card
 
 
 def winner(player_1_score_card: dict, player_2_score_card: dict):
