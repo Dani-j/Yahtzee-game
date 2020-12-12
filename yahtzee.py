@@ -433,8 +433,21 @@ def available_row(score_card: dict, dice: list) -> dict:
     :precondition: all the above parameter conditions must be met
     :postcondition: the return dictionary containing the option number as the key, row name as the value
     :return: a dictionary
-
-
+    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0}, \
+"LOWER SECTION": {"Three of a kind": -1, "YAHTZEE": -1, "TOTAL": 0, "GRANT_TOTAL": 0}}
+    >>> test_dice = ["1", "2", "3", "4", "5"]
+    >>> available_row(test_score_card, test_dice)
+    {1: 'Ones', 2: 'Twos', 3: 'Three of a kind', 4: 'YAHTZEE'}
+    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0}, \
+"LOWER SECTION": {"Three of a kind": -1, "YAHTZEE": 50, "TOTAL": 0, "GRANT_TOTAL": 0}}
+    >>> test_dice = ["1", "1", "1", "2", "1"]
+    >>> available_row(test_score_card, test_dice)
+    {1: 'Ones', 2: 'Twos', 3: 'Three of a kind'}
+    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0}, \
+"LOWER SECTION": {"Three of a kind": -1, "YAHTZEE": 50, "TOTAL": 0, "GRANT_TOTAL": 0}}
+    >>> test_dice = ["1", "1", "1", "1", "1"]
+    >>> available_row(test_score_card, test_dice)
+    {1: 'Ones', 2: 'Twos', 3: 'Three of a kind', 4: 'YAHTZEE'}
     """
     available_options = {}
     count = 1
@@ -516,7 +529,7 @@ def count_scores(score_card, write_row: tuple, dice: list) -> tuple:
     :precondition: all the above parameter conditions must be met
     :postcondition: return the score and the row name
     :return: a tuple
-
+    
     """
     if write_row[0] < 7:
         return sum([int(a_dice) for a_dice in dice if int(a_dice) == write_row[0]]), write_row[1]
