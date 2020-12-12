@@ -529,7 +529,20 @@ def count_scores(score_card, write_row: tuple, dice: list) -> tuple:
     :precondition: all the above parameter conditions must be met
     :postcondition: return the score and the row name
     :return: a tuple
-    
+    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0}, \
+"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": 0, "GRANT_TOTAL": 0}}
+    >>> test_write_row = (1, "Ones")
+    >>> test_dice = ["1", "1", "3", "4", "5"]
+    >>> count_scores(test_score_card, test_write_row, test_dice)
+    (2, 'Ones')
+    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "Threes": -1, "Fours": -1, "Fives": -1, \
+"Sixes": -1, "TOTAL": 0, "Bonus": 0, "TOTAL_": 0},"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, \
+"Full House": -1, "Small Straight": -1, "Large straight": -1, "Chance": -1, "YAHTZEE": -1, "TOTAL": 0, \
+"GRANT TOTAL": 0}}
+    >>> test_write_row = (8, "Four of a kind")
+    >>> test_dice = ["1", "1", "1", "1", "5"]
+    >>> count_scores(test_score_card, test_write_row, test_dice)
+    (9, 'Four of a kind')
     """
     if write_row[0] < 7:
         return sum([int(a_dice) for a_dice in dice if int(a_dice) == write_row[0]]), write_row[1]
