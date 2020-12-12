@@ -333,6 +333,38 @@ def print_score_card(player: str, score_card: dict):
     :precondition: all the above parameter conditions must be met
     :postcondition: print a formated score card
 
+    >>> test_score_card = {"UPPER SECTION": {"Ones": "3", "Twos": -1, "Threes": -1, "Fours": -1, "Fives": "10", \
+"Sixes": -1, "TOTAL": -1, "Bonus": -1, "TOTAL_": ""}, "LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, \
+"Full House": "25", "Small Straight": -1, "Large straight": -1, "Chance": -1, "YAHTZEE": -1, "TOTAL": -1, \
+"GRANT TOTAL": ""}}
+    >>> test_player = "Player One"
+    >>> print_score_card(test_player, test_score_card)
+    <BLANKLINE>
+    Player One's score card:
+    ----------------------------
+           UPPER SECTION
+    ----------------------------
+    Ones                 3
+    Twos
+    Threes
+    Fours
+    Fives                10
+    Sixes
+    TOTAL
+    Bonus
+    TOTAL_
+    ----------------------------
+           LOWER SECTION
+    ----------------------------
+    Three of a kind
+    Four of a kind
+    Full House           25
+    Small Straight
+    Large straight
+    Chance
+    YAHTZEE
+    TOTAL
+    GRANT TOTAL
     """
     print(f"\n{player}'s score card:")
     for section, rows in score_card.items():
@@ -554,7 +586,7 @@ def winner(player_1_score_card: dict, player_2_score_card: dict):
 
 
 def main():
-    doctest.testmod()
+    doctest.testmod(optionflags=doctest.NORMALIZE_WHITESPACE)
     play_yahtzee()
 
 
