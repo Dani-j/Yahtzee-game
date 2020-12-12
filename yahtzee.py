@@ -48,8 +48,8 @@ def EXTRA_YAHTZEE_SCORE_POINTS() -> int:
 
 
 def UPPER_SECTION_BONOUS_REQUIRED_POINTS() -> int:
-    """Must have 65 points in the upper section total to have the bonus points."""
-    return 65
+    """Must have 63 points in the upper section total to have the bonus points."""
+    return 63
 
 
 def UPPER_SECTION_BONOUS() -> int:
@@ -590,12 +590,12 @@ def update_score_card(score_card: dict, write_score_row: tuple) -> dict:
     if write_score_row[1] in ["Ones", "Twos", "Threes", "Fours", "Fives", "Sixes"]:
         score_card["UPPER SECTION"][write_score_row[1]] = write_score_row[0]
         score_card["UPPER SECTION"]["TOTAL"] += write_score_row[0]
-        if score_card["UPPER SECTION"]["TOTAL"] >= 63:
-            score_card["UPPER SECTION"]["Bonus"] = 35
+        if score_card["UPPER SECTION"]["TOTAL"] >= UPPER_SECTION_BONOUS_REQUIRED_POINTS():
+            score_card["UPPER SECTION"]["Bonus"] = UPPER_SECTION_BONOUS()
         score_card["UPPER SECTION"]["TOTAL_"] = score_card["UPPER SECTION"]["TOTAL"] + (
             score_card["UPPER SECTION"]["Bonus"])
     else:
-        if write_score_row[1] == "YAHTZEE" and write_score_row[0] > 0:
+        if write_score_row[1] == "YAHTZEE" and write_score_row[0] == EXTRA_YAHTZEE_SCORE_POINTS():
             score_card["LOWER SECTION"]["YAHTZEE"] += write_score_row[0]
         else:
             score_card["LOWER SECTION"][write_score_row[1]] = write_score_row[0]
