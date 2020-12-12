@@ -612,6 +612,18 @@ def winner(player_1_score_card: dict, player_2_score_card: dict):
     :precondition: all the above parameter conditions must be met
     :postcondition: print the correct result
 
+    >>> test_player_1_score_card = {'UPPER SECTION': {'Ones': 1, 'TOTAL': 1}, 'LOWER SECTION': \
+{'Three of a kind': 14, 'Four of a kind': 16, 'YAHTZEE': 0, 'TOTAL': 30, 'GRANT TOTAL': 31}}
+    >>> test_player_2_score_card = {'UPPER SECTION': {'Ones': '3', 'TOTAL': '3'}, 'LOWER SECTION': \
+{'Three of a kind': 0, 'Four of a kind': 0, 'YAHTZEE': 50, 'TOTAL': 50, 'GRANT TOTAL': 53}}
+    >>> winner(test_player_1_score_card, test_player_2_score_card)
+    Congrats, player two. You win!
+    >>> test_player_1_score_card = {'UPPER SECTION': {'Ones': 3, 'TOTAL': 3}, 'LOWER SECTION': \
+{'Three of a kind': 14, 'Four of a kind': 16, 'YAHTZEE': 50, 'TOTAL': 80, 'GRANT TOTAL': 83}}
+    >>> test_player_2_score_card = {'UPPER SECTION': {'Ones': 3, 'TOTAL': 3},'LOWER SECTION': \
+{'Three of a kind': 0, 'Four of a kind': 30, 'YAHTZEE': 50, 'TOTAL': 80, 'GRANT TOTAL': 83}}
+    >>> winner(test_player_1_score_card, test_player_2_score_card)
+    Congrats. You both win!
     """
     player_1_score = player_1_score_card["LOWER SECTION"]["GRANT TOTAL"]
     player_2_score = player_2_score_card["LOWER SECTION"]["GRANT TOTAL"]
