@@ -18,7 +18,7 @@ def OPTION_UNAVAILABLE():
 
 
 def EMPETY_SCORE() -> int:
-    """-1 means there is no score with the related row."""
+    """The return -1 means there is no score with the related row."""
     return -1
 
 
@@ -465,7 +465,7 @@ def available_row(score_card: dict, dice: list) -> dict:
     return available_options
 
 
-def print_row_options(available_options: dict, score_card: dict) -> list:
+def print_row_options(available_options: dict, score_card: dict):
     """
     Display the options of the available row to write the score and return the available rows.
 
