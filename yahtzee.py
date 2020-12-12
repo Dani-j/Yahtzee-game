@@ -572,6 +572,18 @@ def update_score_card(score_card: dict, write_score_row: tuple) -> dict:
     :postcondition: update the score card and return it
     :return: an dictionary
 
+    >>> test_score_card = {"UPPER SECTION": {"Ones": -1, "Twos": -1, "TOTAL": 0, "Bonus": 0, 'TOTAL_': 0}, \
+"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": 0, "GRANT_TOTAL": 0}}
+    >>> test_write_score_row = (2, "Ones")
+    >>> update_score_card(test_score_card, test_write_score_row)
+    {'UPPER SECTION': {'Ones': 2, 'Twos': -1, 'TOTAL': 2, 'Bonus': 0, 'TOTAL_': 2}, 'LOWER SECTION': \
+{'Three of a kind': -1, 'Four of a kind': -1, 'TOTAL': 0, 'GRANT_TOTAL': 2}}
+    >>> test_score_card = {"UPPER SECTION": {"Ones": 1, "Twos": -1, "TOTAL": 1, "Bonus": 0, 'TOTAL_': 1}, \
+"LOWER SECTION": {"Three of a kind": -1, "Four of a kind": -1, "TOTAL": 0, "GRANT_TOTAL": 1}}
+    >>> test_write_score_row = (18, "Four of a kind")
+    >>> update_score_card(test_score_card, test_write_score_row)
+    {'UPPER SECTION': {'Ones': 1, 'Twos': -1, 'TOTAL': 1, 'Bonus': 0, 'TOTAL_': 1}, 'LOWER SECTION': \
+{'Three of a kind': -1, 'Four of a kind': 18, 'TOTAL': 18, 'GRANT_TOTAL': 19}}
     """
     if write_score_row[1] in ["Ones", "Twos", "Threes", "Fours", "Fives", "Sixes"]:
         score_card["UPPER SECTION"][write_score_row[1]] = write_score_row[0]
