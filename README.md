@@ -1,5 +1,5 @@
-# COMP-1510-Yahtzee
+Yahtzee
 Student name: Dani\
 Terminal Game\
-Wrote in 7 hours on final
+Wrote in 7 hours on final for COMP1510\
 
