@@ -1,3 +1,5 @@
 # COMP-1510-Yahtzee
 Student name: Dani\
-Student number: A01220804
+Terminal Game
+Wrote in 7 hours on final
+
